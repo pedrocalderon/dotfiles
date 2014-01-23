@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='C:/Users/Pedro/Documents'
+let g:netrw_dirhist_2='C:/Users/Pedro/Documents/Estudos'
+let g:netrw_dirhist_3='C:/Users/Pedro/Documents/Estudos/HTML'
+let g:netrw_dirhist_4='C:/Users/Pedro/Desktop'
+let g:netrw_dirhist_5='C:/Users/Pedro/Documents/MATLAB/tratamento_saida_simulador'
+let g:netrw_dirhist_6='C:/Users/Pedro/Desktop'
+let g:netrw_dirhist_7='C:/Users/Pedro/Documents/MATLAB/tratamento_saida_simulador/funcoes'
+let g:netrw_dirhist_8='C:/Users/Pedro/Documents/MATLAB/tratamento_saida_simulador'

@@ -1,7 +1,12 @@
 " vim dotfile from Pedro Calderon
 "
 
-cd C:\Users\Pedro
+if (has('win16') || has('win32') || has('win64') || has('win95'))
+    cd C:\Users\Pedro
+    set runtimepath=$VIMRUNTIME,C:\Users\Pedro\dotfiles\vim\.vim
+elseif has('unix')
+    cd ~
+endif
 set autochdir
 
 call pathogen#infect()
@@ -56,7 +61,11 @@ set formatoptions=cq
 " Backup
 set backup
 set backupext=.bak
-set backupdir=C:\Users\Pedro\backup
+if (has('win16') || has('win32') || has('win64') || has('win95'))
+    set backupdir=C:\Users\Pedro\backup
+elseif has('unix')
+    set backupdir=~/backup
+endif
 
 " File completiton wildcards
 set wildignore=*.asv,*.fig,*.mat

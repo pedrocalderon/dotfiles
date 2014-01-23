@@ -1,11 +1,16 @@
 " vim dotfile from Pedro Calderon
+"
 
 cd C:\Users\Pedro
+set autochdir
 
 call pathogen#infect()
 
 set number
 syntax on
+
+" Status line format
+set ruler
 
 " Window options
 set laststatus=1
@@ -53,15 +58,20 @@ set backup
 set backupext=.bak
 set backupdir=C:\Users\Pedro\backup
 
+" File completiton wildcards
+set wildignore=*.asv,*.fig,*.mat
 
+" Create file as soon as it's eddited
+:autocmd BufNewFile * :write
+
+" Special highlights configurations
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerd tree config
 " Open NERDTree whe vim starts up if no files were specified
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" TODO: make that "o" opens archive and quit NERDTree,
-" and that "O" opens archive without closing NERDTree.
 let NERDTreeQuitOnOpen=1
 
 
@@ -74,43 +84,68 @@ let NERDTreeQuitOnOpen=1
 let mapleader="\\"
 let maplocalleader="|"
 
+" Intuitive moving
+nnoremap j gj
+nnoremap k gk
+
+" Scroll the screen without moving the cursor
+nnoremap <C-j> jzz
+nnoremap <C-k> kzz
+
 " Quick esc in insert mode
 inoremap jk <esc>
+inoremap <esc> <nop>
 
 " NERDTree map
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 
 " insert single character with space
 nnoremap <space> i_<esc>r
 
-" K is the oposite o J, break te line
-nnoremap K i<cr><esc>k$
+" Alternate buffer
+noremap <C-e> :b#<CR>
+" :Add a :bnext and :bprevious map"
 
-" Insert lines eithout entering insert mode
-nnoremap <Enter> o<esc>k
+" Navigate between buffers
+noremap <leader>h <C-w>h
+noremap <leader>l <C-w>l
+
+" Alternate buffers position
+noremap <leader>H <C-w>H
+noremap <leader>L <C-w>L
+
+" K is the oposite o J, break te line
+nnoremap K i<cr><esc>$
+
+" Insert lines without entering insert mode
+nnoremap <Enter> o<esc>
 nnoremap <S-Enter> O<esc>j
 
 " Toggles number/relativenumber
-nnoremap <leader>n :call NumberToggle()<cr>
+nnoremap <leader>r :call NumberToggle()<cr>
 
 " Use nohlsearch
-nnoremap <leader>h :nohls<cr>
+nnoremap <leader>s :nohlsearch<cr>
 
 " Esier vimrc editing
 nnoremap <leader>ev :vsplit C:\Users\Pedro\dotfiles\vim\.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Follow links with enter insted of ctrl-]
-" the second option doesn't work on windows.
-nnoremap <buffer> <C-o> <C-]>
+" Follow links with <leader>o insted of ctrl-]
+nnoremap <buffer> <leader>o <C-]>
+
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abbreviations
 iabbrev fun function
+
 iabbrev pc Pedro Calderon
 iabbrev @@ pedrolcalderon@gmail.com
+
+iabbrev /** /********************************************************************************
+iabbrev **/ ********************************************************************************/
 
 " Typos correction
 iabbrev Caldeorn Calderon
@@ -126,3 +161,9 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+"command Bv -nargs=+ :vertical sb "<args>"

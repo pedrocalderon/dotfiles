@@ -137,11 +137,20 @@ nnoremap <leader>r :call NumberToggle()<cr>
 nnoremap <leader>s :nohlsearch<cr>
 
 " Esier vimrc editing
-nnoremap <leader>ev :vsplit C:\Users\Pedro\dotfiles\vim\.vimrc<cr>
+if (has('win16') || has('win32') || has('win64') || has('win95'))
+    nnoremap <leader>ev :vsplit C:\Users\Pedro\dotfiles\vim\.vimrc<cr>
+elseif has('unix')
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+endif
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Follow links with <leader>o insted of ctrl-]
 nnoremap <buffer> <leader>o <C-]>
+
+" Spell checks
+nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
+nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
+nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
 
 
 

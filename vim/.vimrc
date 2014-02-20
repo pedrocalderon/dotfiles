@@ -20,10 +20,6 @@
 
     set encoding=utf-8
 
-    if (has('win16') || has('win32') || has('win64') || has('win95'))
-        set grepprg=C:/Program\ Files\ (x86)/GnuWin32/bin/grep\ -nH\ $*
-    endif
-
     " Status line format
     set ruler
 
@@ -76,6 +72,12 @@
     " File completiton wildcards
     set wildignore=*.asv,*.fig,*.mat
 
+    " Highlight groups
+    highlight MyGreenGroup ctermbg=green guibg=green
+
+    " Grep program
+    set grepprg=grep
+
 " }}}
 
 " Autocomands ---------------------- {{{
@@ -86,9 +88,9 @@
         autocmd!
         " todo: ver pq nerdtree perde a cor ao se recarregar o vimrc
         " Re-load the .vimrc file after all startup stuff.
-        autocmd VimEnter,GUIEnter * :source $MYVIMRC
+        "autocmd VimEnter,GUIEnter * :source $MYVIMRC
         " Create file as soon as it's eddited
-        autocmd BufNewFile * :write
+        "/*autocmd BufNewFile * :write*/
         " Automatically change to normal
         " todo: fazer sair do modo insert
         autocmd FocusLost,CursorHoldI * :echom "Perda de foco"
@@ -109,6 +111,14 @@
         autocmd FileType vim setlocal foldmethod=marker
     augroup END
     " }}}
+   
+    " Latex file settings  ---------------------- {{{
+    augroup filetype_latex
+        autocmd!
+        autocmd FileType latex setlocal grepprg=grep\ -nH\ $*
+    augroup END
+    " }}}
+
 
 " }}}
 
@@ -140,7 +150,7 @@
     "IMPORTANT: grep will sometimes skip desplaying the file name if you search in a
     "single file. This will confuse Latex-suite. Set your grep program to always
     "generate a file-name.
-    set grepprg=grep\ -nH\ $*
+    "set grepprg=grep\ -nH\ $*
 
     "OPTIONAL: Starting with vim 7, the filetype of empty .tex files defaults to
     "'plaintex' insted of 'tex', wich results in vim-latex not being loaded. The
@@ -204,8 +214,12 @@
 
     " Use nohlsearch
     nnoremap <leader>s :nohlsearch<cr>
+    " very-magic search
+    nnoremap // /\v
 
     " Esier vimrc editing
+    " todo: fazer com que o vimrc use vsplit se em tela cheia, usar split
+    " simples em caso contrario
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         nnoremap <leader>ev :vsplit C:\Users\Pedro\dotfiles\vim\.vimrc<cr>
     elseif has('unix')
@@ -223,8 +237,13 @@
     nnoremap <leader>f 1z=
 
     " Substitutions
-    noremap ;; :%s:::g<Left><Left><Left>
-    noremap ;' :%s:::cg<Left><Left><Left><Left>
+    "noremap ;; :%s:::g<Left><Left><Left>
+    "noremap ;' :%s:::cg<Left><Left><Left><Left>
+
+    " Highlights trailing spaces
+    " The group highlight group Error can be used.
+    nnoremap <leader>w :match MyGreenGroup /\v +$/<cr>
+    nnoremap <leader>W :match<cr>
 
 " }}}
 
@@ -272,12 +291,15 @@
 
 " }}}
 
-" Abbreviations ---------------------- {{{
+" Abbreviations -j--------------------- {{{
 
     iabbrev fun function
 
     iabbrev pc Pedro Calderon
     iabbrev @@ pedrolcalderon@gmail.com
+
+    " todo: fazer <l mapear o literal <leader>
+    " iabbrev <l <leader> 
 
     " Typos correction
     iabbrev Caldeorn Calderon
@@ -307,7 +329,37 @@
 
 " }}}
 
+" Custom functions ---------------------- {{{
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Grep funcionality ---------------------- {{{
+    " Creates an operator that greps the mouvement or text object in the
+    " directory of the current file.
+    " By default the grep operator is set to <leader>g
+    "
+    " This exemple was made in by Steve Losh in 'Learn Vimscript the Hard Way'
+    nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
+    vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+
+    function! s:GrepOperator(type)
+        let saved_unamed_register = @@ 
+
+        if a:type ==# 'v'
+            execute "normal! `<v`>y"
+        elseif a:type ==# 'char'
+            execute "normal! `[v`]y"
+        else
+            return
+        endif
+
+        silent execute "grep! -nHr " . shellescape(@@) . " ."
+        copen
+
+        let @@ = saved_unamed_register
+    endfunction
+    " }}}
+    
+" }}}
+
+
 " Commands
 "command Bv -nargs=+ :vertical sb "<args>"

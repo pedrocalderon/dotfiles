@@ -210,7 +210,7 @@
     nnoremap <S-Enter> O<esc>j
 
     " Toggles number/relativenumber
-    nnoremap <leader>r :call NumberToggle()<cr>
+    nnoremap <leader>r :set relativenumber!<cr>
 
     " Use nohlsearch
     nnoremap <leader>s :nohlsearch<cr>
@@ -234,7 +234,7 @@
     nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
     nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
     nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
-    nnoremap <leader>f 1z=
+    nnoremap <leader>c 1z=
 
     " Substitutions
     "noremap ;; :%s:::g<Left><Left><Left>
@@ -291,7 +291,7 @@
 
 " }}}
 
-" Abbreviations -j--------------------- {{{
+" Abbreviations ---------------------- {{{
 
     iabbrev fun function
 
@@ -314,18 +314,6 @@
         autocmd FileType python :iabbrev if if :<left>
         autocmd FileType python :iabbrev for for :<left>
     augroup END
-
-" }}}
-
-" Functions ---------------------- {{{
-
-    function! NumberToggle()
-        if(&relativenumber == 1)
-            set norelativenumber
-        else
-            set relativenumber
-        endif
-    endfunction
 
 " }}}
 
@@ -357,7 +345,37 @@
         let @@ = saved_unamed_register
     endfunction
     " }}}
-    
+
+    " Toggling foldcolumn ---------------------- {{{
+    nnoremap <leader>f :call <SID>FoldColumnToggle()<cr>
+
+    function! s:FoldColumnToggle()
+        if &foldcolumn
+            setlocal foldcolumn=0
+        else
+            setlocal foldcolumn=4
+        endif
+    endfunction
+    " }}}
+
+    " Toggling quickfix window ---------------------- {{{
+    nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
+
+    let g:quickfix_is_open = 0
+
+    function! s:QuickfixToggle()
+        if g:quickfix_is_open
+            cclose
+            let g:quickfix_is_open = 0
+            execute g:quickfix_return_to_window . "wincmd w"
+        else
+            let g:quickfix_return_to_window = winnr()
+            copen
+            let g:quickfix_is_open = 1
+        endif
+    endfunction
+    " }}}
+
 " }}}
 
 

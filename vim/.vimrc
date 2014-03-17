@@ -172,6 +172,9 @@ nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
 nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
 nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
 
+" Portuguese abreviations
+inoremap cao ção
+
 
 
 
@@ -184,6 +187,8 @@ iabbrev @@ pedrolcalderon@gmail.com
 
 iabbrev /** /********************************************************************************
 iabbrev **/ ********************************************************************************/
+
+iabbrev """" """
 
 " Typos correction
 iabbrev Caldeorn Calderon

@@ -108,3 +108,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
+
+alias psudo='sudo env PATH="$PATH"'

@@ -104,6 +104,17 @@ set grepprg=grep\ -nH\ $*
 "'plaintex' insted of 'tex', wich results in vim-latex not being loaded. The
 "following changes the default filetype back to 'tex'
 let g:tex_flavor='latex'
+
+"To solve the problem with vim-latexsuite has with ã and â
+imap <buffer> <silent> <M-C> <Plug>Tex_MathCal
+imap <buffer> <silent> <M-B> <Plug>Tex_MathBF
+imap <buffer> <leader>it <Plug>Tex_InsertItemOnThisLine
+imap <buffer> <silent> <M-A> <Plug>Tex_InsertItem
+imap <buffer> <silent> <leader>c <Plug>Traditional
+imap <buffer> <silent> é é
+imap <buffer> <silent> á á
+imap <buffer> <silent> ã ã
+imap <buffer> <silent> â â
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remaps
 
@@ -168,12 +179,17 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <buffer> <leader>o <C-]>
 
 " Spell checks
-nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
+nnoremap <leader>sce :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
 nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
 
 " Portuguese abreviations
 inoremap cao ção
+inoremap coes ções
+inoremap oes ões
+inoremap sao são
+
+inoremap \c \c
 
 
 
@@ -193,6 +209,15 @@ iabbrev """" """
 " Typos correction
 iabbrev Caldeorn Calderon
 
+" Portuguese
+iabbrev nao não
+iabbrev Nao Não
+iabbrev sao são
+iabbrev Sao São
+iabbrev eh é
+iabbrev ja já
+iabbrev vts VTS
+iabbrev vtmis VTMIS
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

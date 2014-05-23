@@ -34,7 +34,11 @@
     set viminfo='1000,f1,:100,/100,h,@1000
 
     " Start the VIM window maximised
-    au GUIEnter * simalt ~x
+    if (has('win16') || has('win32') || has('win64') || has('win95'))
+        au GUIEnter * simalt ~x
+    elseif has('unix')
+        set lines=999 columns=999
+    endif
 
     " Write files when needed
     set autowrite
@@ -94,9 +98,6 @@
 
     " viminfo options
     set viminfo='1000,f1,:100,/100,h,@1000
-
-    " Start the VIM window maximised
-    au GUIEnter * simalt ~x
 
     " Write files when needed
     set autowrite

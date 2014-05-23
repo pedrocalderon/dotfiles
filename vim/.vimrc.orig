@@ -8,6 +8,74 @@
 
     syntax on
 
+<<<<<<< HEAD
+"OPTIONAL: Starting with vim 7, the filetype of empty .tex files defaults to
+"'plaintex' insted of 'tex', wich results in vim-latex not being loaded. The
+"following changes the default filetype back to 'tex'
+let g:tex_flavor='latex'
+
+"To solve the problem with vim-latexsuite has with ã and â
+imap <buffer> <silent> <M-C> <Plug>Tex_MathCal
+imap <buffer> <silent> <M-B> <Plug>Tex_MathBF
+imap <buffer> <leader>it <Plug>Tex_InsertItemOnThisLine
+imap <buffer> <silent> <M-A> <Plug>Tex_InsertItem
+imap <buffer> <silent> <leader>c <Plug>Traditional
+imap <buffer> <silent> é é
+imap <buffer> <silent> á á
+imap <buffer> <silent> ã ã
+imap <buffer> <silent> â â
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remaps
+
+" Map some key to <nop> make it does sothing
+
+" Leader definition
+let mapleader="\\"
+let maplocalleader="|"
+
+" Intuitive moving
+nnoremap j gj
+nnoremap k gk
+
+" Scroll the screen without moving the cursor
+nnoremap <C-j> jzz
+nnoremap <C-k> kzz
+
+" Quick esc in insert mode
+inoremap jk <esc>
+inoremap <esc> <nop>
+
+" NERDTree map
+noremap <leader>n :NERDTreeToggle<CR>
+
+" insert single character with space
+nnoremap <space> i_<esc>r
+
+" Alternate buffer
+noremap <C-e> :b#<CR>
+" :Add a :bnext and :bprevious map"
+
+" Navigate between buffers
+noremap <leader>h <C-w>h
+noremap <leader>l <C-w>l
+
+" Alternate buffers position
+noremap <leader>H <C-w>H
+noremap <leader>L <C-w>L
+
+" K is the oposite o J, break te line
+nnoremap K i<cr><esc>$
+
+" Insert lines without entering insert mode
+nnoremap <Enter> o<esc>
+nnoremap <S-Enter> O<esc>j
+
+" Toggles number/relativenumber
+nnoremap <leader>r :call NumberToggle()<cr>
+
+" Use nohlsearch
+nnoremap <leader>s :nohlsearch<cr>
+=======
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         cd C:\Users\Pedro
         set runtimepath=$VIMRUNTIME,C:\Users\Pedro\dotfiles\vim\.vim
@@ -15,17 +83,34 @@
         cd ~
     endif
     set autochdir
+>>>>>>> f36c75ae320e96feae067ce386a60f97346ab1cd
 
     set number
 
     set encoding=utf-8
 
+<<<<<<< HEAD
+" Spell checks
+nnoremap <leader>sce :setlocal spell! spelllang=en_us<cr>
+nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
+nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
+
+" Portuguese abreviations
+inoremap cao ção
+inoremap coes ções
+inoremap oes ões
+inoremap sao são
+
+inoremap \c \c
+
+=======
     " Status line format
     set ruler
 
     " Window options
     set laststatus=1
     set equalalways
+>>>>>>> f36c75ae320e96feae067ce386a60f97346ab1cd
 
     " Session options
     set sessionoptions=buffers,globals,options,winpos,resize,winsize,slash,unix
@@ -46,6 +131,22 @@
     set ignorecase
     set smartcase
 
+<<<<<<< HEAD
+iabbrev """" """
+
+" Typos correction
+iabbrev Caldeorn Calderon
+
+" Portuguese
+iabbrev nao não
+iabbrev Nao Não
+iabbrev sao são
+iabbrev Sao São
+iabbrev eh é
+iabbrev ja já
+iabbrev vts VTS
+iabbrev vtmis VTMIS
+=======
     " Identation
     set tabstop=4
     set shiftwidth=4
@@ -55,68 +156,7 @@
 
     " Backspace behavior
     set backspace=indent,eol,start
-
-    " Coments wrap
-    set textwidth=80
-    set formatoptions=cq
-
-    " Backup
-    set backup
-    set backupext=.bak
-    if (has('win16') || has('win32') || has('win64') || has('win95'))
-        set backupdir=C:\Users\Pedro\backup
-    elseif has('unix')
-        set backupdir=~/backup
-    endif
-
-    " File completiton wildcards
-    set wildignore=*.asv,*.fig,*.mat
-
-    " Highlight groups
-    highlight MyGreenGroup ctermbg=green guibg=green
-
-    " Grep program
-    set grepprg=grep
-
-    set number
-
-    set encoding=utf-8
-
-    " Status line format
-    set ruler
-
-    " Window options
-    set laststatus=1
-    set equalalways
-
-    " Session options
-    set sessionoptions=buffers,globals,options,winpos,resize,winsize,slash,unix
-
-    " viminfo options
-    set viminfo='1000,f1,:100,/100,h,@1000
-
-    " Start the VIM window maximised
-    au GUIEnter * simalt ~x
-
-    " Write files when needed
-    set autowrite
-
-    " Search options
-    set hlsearch
-    set incsearch
-    " Ignore case, unless there is a uppercase character.
-    set ignorecase
-    set smartcase
-
-    " Identation
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
-    set autoindent
-    set shiftround 
-
-    " Backspace behavior
-    set backspace=indent,eol,start
+>>>>>>> f36c75ae320e96feae067ce386a60f97346ab1cd
 
     " Coments wrap
     set textwidth=80
@@ -375,25 +415,6 @@
         autocmd FileType python :iabbrev class class :<left>
         autocmd FileType python :iabbrev if if :<left>
         autocmd FileType python :iabbrev for for :<left>
-        
-        autocmd FileType tex :iabbrev vtmis VTMIS
-        autocmd FileType tex :iabbrev vts VTS
-        autocmd FileType tex :iabbrev vts. VTS.
-        autocmd FileType tex :iabbrev vtss VTSs
-        autocmd FileType tex :iabbrev Sao São
-        autocmd FileType tex :iabbrev nao não
-        autocmd FileType tex :iabbrev Nao Não
-        autocmd FileType tex :iabbrev ja já
-        autocmd FileType tex :inoremap cao ção
-        autocmd FileType tex :inoremap coes ções
-        autocmd FileType tex :inoremap sao são
-        autocmd FileType tex :inoremap soes sões
-        autocmd FileType tex :inoremap tao tão
-        autocmd FileType tex :inoremap ã ã
-        autocmd FileType tex :inoremap â â
-        autocmd FileType tex :inoremap é é
-        autocmd FileType tex :inoremap eh é
-        autocmd FileType tex :iabbrev <buffer> -nv- -------------------------------------Novo Slide---------------------------------
     augroup END
 
 " }}}

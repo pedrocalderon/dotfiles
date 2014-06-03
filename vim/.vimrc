@@ -33,11 +33,13 @@
     " viminfo options
     set viminfo='1000,f1,:100,/100,h,@1000
 
-    " Start the VIM window maximised
-    if (has('win16') || has('win32') || has('win64') || has('win95'))
-        au GUIEnter * simalt ~x
-    elseif has('unix')
-        set lines=999 columns=999
+    " Start the VIM window maximised if the GUI is running
+    if (has("gui_running"))
+        if (has('win16') || has('win32') || has('win64') || has('win95'))
+            au GUIEnter * simalt ~x
+        elseif has('unix')
+            set lines=63 columns=235
+        endif
     endif
 
     " Write files when needed
@@ -62,7 +64,16 @@
 
     " Coments wrap
     set textwidth=80
-    set formatoptions=cq
+    set formatoptions=tcqnj
+
+    " Definition of the highlight color
+    if (has("gui_running"))
+        highlight ColorColumn guibg=DarkGray
+    else
+        highlight ColorColumn ctermbg=8
+    endif
+    " Highlight the column after the textwidth
+    set colorcolumn=+1
 
     " Backup
     set backup
@@ -118,10 +129,6 @@
 
     " Backspace behavior
     set backspace=indent,eol,start
-
-    " Coments wrap
-    set textwidth=80
-    set formatoptions=cq
 
     " Backup
     set backup
@@ -179,6 +186,7 @@
     augroup filetype_latex
         autocmd!
         autocmd FileType latex setlocal grepprg=grep\ -nH\ $*
+        autocmd FileType tex setlocal foldmethod=marker
     augroup END
     " }}}
 
@@ -308,6 +316,13 @@
     nnoremap <leader>w :match MyGreenGroup /\v +$/<cr>
     nnoremap <leader>W :match<cr>
 
+    " Jump 80 characters
+    nnoremap LL 080l
+    " Fazer função que grifa linhas com mais de X caractéres.
+    " Chamar essa função com parâmetro 80.
+    " Automatizar o processo de para cada linha: LL, se estiver no meio de uma
+    " palavra, b, e então dividir a linha com K.
+
 " }}}
 
 " operator-pending mappings ---------------------- {{{ 
@@ -394,7 +409,8 @@
         autocmd FileType tex :inoremap â â
         autocmd FileType tex :inoremap é é
         autocmd FileType tex :inoremap eh é
-        autocmd FileType tex :iabbrev <buffer> -nv- -------------------------------------Novo Slide---------------------------------
+        autocmd FileType tex :iabbrev <buffer> -nv- %-------------------------------------Novo Slide---------------------------------
+        autocmd FileType tex :noremap -- o%-------------------------------------------------------------------------------<esc>
     augroup END
 
 " }}}

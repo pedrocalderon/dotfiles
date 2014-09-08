@@ -64,7 +64,7 @@
 
     " Coments wrap
     set textwidth=80
-    set formatoptions=tcqnj
+    set formatoptions=tcqn
 
     " Definition of the highlight color
     if (has("gui_running"))
@@ -80,8 +80,8 @@
     set backupext=.bak
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         set backupdir=C:\Users\Pedro\backup
-    elseif has('unix')
-        set backupdir=~/backup
+    elseif has('unix') || has('mac') || has('macunix')
+        set backupdir=~/.vimBackup
     endif
 
     " File completiton wildcards
@@ -131,15 +131,6 @@
 
     " Backspace behavior
     set backspace=indent,eol,start
-
-    " Backup
-    set backup
-    set backupext=.bak
-    if (has('win16') || has('win32') || has('win64') || has('win95'))
-        set backupdir=C:\Users\Pedro\backup
-    elseif has('unix')
-        set backupdir=~/backup
-    endif
 
     " File completiton wildcards
     set wildignore=*.asv,*.fig,*.mat

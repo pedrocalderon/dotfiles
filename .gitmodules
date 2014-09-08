@@ -10,3 +10,6 @@
 [submodule "vim/.vim/bundle/nerdcommenter"]
 	path = vim/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/.vim/pathogen"]
+	path = vim/.vim/pathogen
+	url = https://github.com/tpope/vim-pathogen

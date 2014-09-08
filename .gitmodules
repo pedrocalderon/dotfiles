@@ -19,3 +19,6 @@
 [submodule "vim/.vim/bundle/syntastic"]
 	path = vim/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
+[submodule "vim/.vim/bundle/cvim"]
+	path = vim/.vim/bundle/cvim
+	url = https://github.com/HenningM/cvim-pathogen

@@ -13,3 +13,6 @@
 [submodule "vim/.vim/pathogen"]
 	path = vim/.vim/pathogen
 	url = https://github.com/tpope/vim-pathogen
+[submodule "vim/.vim/bundle/fugitive"]
+	path = vim/.vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive

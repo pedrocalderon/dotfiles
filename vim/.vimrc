@@ -73,7 +73,7 @@
         highlight ColorColumn ctermbg=8
     endif
     " Highlight the column after the textwidth
-    set colorcolumn=+1
+    "set colorcolumn=+1
 
     " Backup
     set backup
@@ -93,11 +93,13 @@
     " Grep program
     set grepprg=grep
 
-    set number
+        set number
 
     set encoding=utf-8
 
     " Status line format
+    " todo
+    "set statusline=[%{&fo}]
     set ruler
 
     " Window options
@@ -281,6 +283,10 @@
     nnoremap <S-Enter> O<esc>j
 
     " Toggles number/relativenumber
+    " todo: Fix this command to togle between relativenumber and number. The way
+    " it is implemented it togles from number to relativenumber, and them to
+    " nothing. A if is necessáry to verify if the number or relativenumber is
+    " active when the command is used.
     nnoremap <leader>r :set relativenumber!<cr>
 
     " Use nohlsearch
@@ -322,8 +328,15 @@
     " Chamar essa função com parâmetro 80.
     " Automatizar o processo de para cada linha: LL, se estiver no meio de uma
     " palavra, b, e então dividir a linha com K.
+    
+    " Insert current file name 
+    inoremap \fn <C-R>=expand("%:t:r")<CR>
+    inoremap \file <C-R>=expand("%:t")<CR>
+    inoremap \fdir <C-R>=expand("%:p:h")<CR>
+    inoremap \rdir <C-R>=expand("%:h")<CR>
 
 " }}}
+
 
 " operator-pending mappings ---------------------- {{{ 
 
@@ -409,7 +422,7 @@
         autocmd FileType tex :inoremap â â
         autocmd FileType tex :inoremap é é
         autocmd FileType tex :inoremap eh é
-        autocmd FileType tex :iabbrev <buffer> -nv- %-------------------------------------Novo Slide---------------------------------
+        autocmd FileType tex :iabbrev <buffer> -ns- %-------------------------------------Novo Slide---------------------------------
         autocmd FileType tex :noremap -- o%-------------------------------------------------------------------------------<esc>
     augroup END
 

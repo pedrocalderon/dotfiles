@@ -122,13 +122,6 @@
     set ignorecase
     set smartcase
 
-    " Identation
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
-    set autoindent
-    set shiftround 
-
     " Backspace behavior
     set backspace=indent,eol,start
 
@@ -247,7 +240,7 @@
     " Alternate buffer
     noremap <C-e> :b#<CR>
     " :Add a :bnext and :bprevious map"
-
+    
     " Navigate between buffers
     noremap <leader>h <C-w>h
     noremap <leader>l <C-w>l

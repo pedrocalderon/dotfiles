@@ -20,6 +20,7 @@
 
     set encoding=utf-8
 
+    " todo - make status line better
     " Status line format
     set ruler
 
@@ -83,47 +84,6 @@
     elseif has('unix') || has('mac') || has('macunix')
         set backupdir=~/.vimBackup
     endif
-
-    " File completiton wildcards
-    set wildignore=*.asv,*.fig,*.mat
-
-    " Highlight groups
-    highlight MyGreenGroup ctermbg=green guibg=green
-
-    " Grep program
-    set grepprg=grep
-
-        set number
-
-    set encoding=utf-8
-
-    " Status line format
-    " todo
-    "set statusline=[%{&fo}]
-    set ruler
-
-    " Window options
-    set laststatus=1
-    set equalalways
-
-    " Session options
-    set sessionoptions=buffers,globals,options,winpos,resize,winsize,slash,unix
-
-    " viminfo options
-    set viminfo='1000,f1,:100,/100,h,@1000
-
-    " Write files when needed
-    set autowrite
-
-    " Search options
-    set hlsearch
-    set incsearch
-    " Ignore case, unless there is a uppercase character.
-    set ignorecase
-    set smartcase
-
-    " Backspace behavior
-    set backspace=indent,eol,start
 
     " File completiton wildcards
     set wildignore=*.asv,*.fig,*.mat
@@ -308,11 +268,7 @@
 
     " Jump 80 characters
     nnoremap LL 080l
-    " Fazer função que grifa linhas com mais de X caractéres.
-    " Chamar essa função com parâmetro 80.
-    " Automatizar o processo de para cada linha: LL, se estiver no meio de uma
-    " palavra, b, e então dividir a linha com K.
-    
+
     " Insert current file name 
     inoremap \fn <C-R>=expand("%:t:r")<CR>
     inoremap \file <C-R>=expand("%:t")<CR>

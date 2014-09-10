@@ -277,7 +277,6 @@
 
 " }}}
 
-
 " operator-pending mappings ---------------------- {{{ 
 
     "in next something

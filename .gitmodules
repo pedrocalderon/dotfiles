@@ -22,3 +22,6 @@
 [submodule "vim/.vim/bundle/cvim"]
 	path = vim/.vim/bundle/cvim
 	url = https://github.com/HenningM/cvim-pathogen
+[submodule "vim/.vim/bundle/bufexplorer"]
+	path = vim/.vim/bundle/bufexplorer
+	url = https://github.com/corntrace/bufexplorer

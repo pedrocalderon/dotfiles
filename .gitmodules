@@ -25,3 +25,6 @@
 [submodule "vim/.vim/bundle/bufexplorer"]
 	path = vim/.vim/bundle/bufexplorer
 	url = https://github.com/corntrace/bufexplorer
+[submodule "vim/.vim/bundle/easymotion"]
+	path = vim/.vim/bundle/easymotion
+	url = https://github.com/Lokaltog/vim-easymotion

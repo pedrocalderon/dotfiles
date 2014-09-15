@@ -3,10 +3,14 @@
 
 " Basic settings --------------- {{{
 
+    set nocompatible
+
     filetype on
     filetype plugin on
 
     syntax on
+
+    set encoding=utf8 nobomb
 
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         cd C:\Users\Pedro
@@ -20,8 +24,11 @@
 
     set encoding=utf-8
 
-    " todo - make status line better
+    " Use the OS clipboard by default
+    set clipboard=unnamed
+
     " Status line format
+    " Some status line configuration is under the syntastic plugin config.
     set ruler
 
     " Window options
@@ -52,6 +59,8 @@
     " Ignore case, unless there is a uppercase character.
     set ignorecase
     set smartcase
+    " uses g option by default
+    set gdefault
 
     " Identation
     set tabstop=4
@@ -93,6 +102,19 @@
 
     " Grep program
     set grepprg=grep
+
+    " Optimiza for fast terminal connection
+    " timreynolds.org/2013/05/26/configuring-vim-on-mac-os-x/
+    set ttyfast
+
+    " Always show status line
+    "set laststatus=2
+
+    " No error bells
+    set noerrorbells
+
+    " Start scrolling 3 lines before the horizontal window border
+    set scrolloff=3
 
 " }}}
 
@@ -175,6 +197,17 @@
     let g:tex_flavor='latex'
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Syntastic configs
+    
+    " Status line format
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_auto_jump=2
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " }}}
 
 " Remaps ---------------------- {{{
@@ -241,6 +274,8 @@
     " Esier vimrc editing
     " todo: fazer com que o vimrc use vsplit se em tela cheia, usar split
     " simples em caso contrario
+    " Fazer funcao para realizar o toggle de editar vim. \ev abre a janela, \ev
+    " fecha a janela e deleta o buffer do vimrc.
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         nnoremap <leader>ev :vsplit C:\Users\Pedro\dotfiles\vim\.vimrc<cr>
     elseif has('unix')
@@ -274,6 +309,25 @@
     inoremap \file <C-R>=expand("%:t")<CR>
     inoremap \fdir <C-R>=expand("%:p:h")<CR>
     inoremap \rdir <C-R>=expand("%:h")<CR>
+
+    " Tabs
+    " Remapas from: http://vim.wikia.com/wiki/Using_tab_pages
+    " move between tabs with ctrl + arrow keys
+    nnoremap <C-Left> :tabprevious<CR>
+    nnoremap <C-Right> :tabnext<CR>
+    " displace tabs with alt + arrow keys
+    nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+    nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+    " <F8> toggles between showing all buffers in tabs or not.
+    let notabs = 0
+    nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+
+    " Copy to clip board on Mac
+    nmap <F2> :.w !pbcopy<CR><CR>
+    vmap <F2> :w !pbcopy<CR><CR>
+    nmap <F3> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+    imap <F3> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+
 
 " }}}
 

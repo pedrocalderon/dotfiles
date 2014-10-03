@@ -156,23 +156,8 @@
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "VIM-LATEX plug-in configuration
-    " The following additions were copied from the vim-latex website
-    "
-    "IMPORTANT: win32 users will need to have 'shellslash' set so that latex can be
-    "called correctly
-    set shellslash
+    nnoremap s <Plug>(easymotion-s)
 
-    "
-    "IMPORTANT: grep will sometimes skip desplaying the file name if you search in a
-    "single file. This will confuse Latex-suite. Set your grep program to always
-    "generate a file-name.
-    "set grepprg=grep\ -nH\ $*
-
-    "OPTIONAL: Starting with vim 7, the filetype of empty .tex files defaults to
-    "'plaintex' insted of 'tex', wich results in vim-latex not being loaded. The
-    "following changes the default filetype back to 'tex'
-    let g:tex_flavor='latex'
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}

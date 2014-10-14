@@ -1,12 +1,38 @@
 " vim dotfile from Pedro Calderon
 
 
+" Vunddle ---------------------- {{{
+" Settings required by vundle
+    set nocompatible
+    filetype off
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/vundle
+    call vundle#begin()
+
+    " let Vundle manage Vundle, required
+    Plugin 'gmarik/Vundle.vim'
+
+    " Pluggins to manage
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'scrooloose/nerdcommenter'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'Townk/vim-autoclose'
+    Plugin 'corntrace/bufexplorer'
+    Plugin 'Lokaltog/vim-easymotion'
+
+    " All pluffins must be added before the following line
+    call vundle#end()
+    filetype plugin indent on
+    
+" ------------------------------ }}}
+
 " Basic settings --------------- {{{
 
-    set nocompatible
-
-    filetype on
-    filetype plugin on
+    " Unactive once it is required by vundle:
+    "filetype on
+    "filetype plugin on
 
     syntax on
 
@@ -166,8 +192,6 @@
 
 " Plugins ---------------------- {{{
 
-    call pathogen#infect()
-
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
     
@@ -183,7 +207,12 @@
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Syntastic 
+    nnoremap s <Plug>(easymotion-s)
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Syntastic configs
     
     " Status line format
     set statusline+=%#warningmsg#

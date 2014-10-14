@@ -116,6 +116,9 @@
     " Start scrolling 3 lines before the horizontal window border
     set scrolloff=3
 
+    " Show pressed keys in the status bar
+    set showcmd
+
 " }}}
 
 " Autocomands ---------------------- {{{
@@ -166,6 +169,8 @@
     call pathogen#infect()
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " nerdtree
+    
     augroup nerdtree_group
         "autocmd!
         " Nerd tree config
@@ -178,27 +183,7 @@
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "VIM-LATEX plug-in configuration
-    " The following additions were copied from the vim-latex website
-    "
-    "IMPORTANT: win32 users will need to have 'shellslash' set so that latex can be
-    "called correctly
-    set shellslash
-
-    "
-    "IMPORTANT: grep will sometimes skip desplaying the file name if you search in a
-    "single file. This will confuse Latex-suite. Set your grep program to always
-    "generate a file-name.
-    "set grepprg=grep\ -nH\ $*
-
-    "OPTIONAL: Starting with vim 7, the filetype of empty .tex files defaults to
-    "'plaintex' insted of 'tex', wich results in vim-latex not being loaded. The
-    "following changes the default filetype back to 'tex'
-    let g:tex_flavor='latex'
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Syntastic configs
+    " Syntastic 
     
     " Status line format
     set statusline+=%#warningmsg#
@@ -206,6 +191,19 @@
     set statusline+=%*
 
     let g:syntastic_auto_jump=2
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " easymotion 
+    
+    " Bi-directional find motion
+    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+    " `s{char}{label}`
+    nmap s <Plug>(easymotion-s)
+    " or
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap <leader><leader>s <Plug>(easymotion-s2)
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}

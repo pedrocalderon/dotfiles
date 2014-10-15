@@ -15,6 +15,7 @@
 
     " Pluggins to manage
     Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'

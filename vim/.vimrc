@@ -7,7 +7,7 @@
     filetype off
 
     " set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/vundle
+    set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
     " let Vundle manage Vundle, required
@@ -89,9 +89,10 @@
     set gdefault
 
     " Identation
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
+    set expandtab "spaces substitute tab characters
+    set tabstop=4 "width of a tab carachter
+    set softtabstop=4 "Fine tune amount of white spaces to be inserted
+    set shiftwidth=4 "Definitions for the identetion commands
     set autoindent
     set shiftround 
 
@@ -148,6 +149,7 @@
 " }}}
 
 " Autocomands ---------------------- {{{
+if has("autocmd")
 
     " The autocmd! erases the previosly loaded augroup
     " Commands run at initialization of vim
@@ -166,7 +168,7 @@
     " C/C++ arduino file settings ---------------------- {{{
     augroup filetype_c
         autocmd!
-        autocmd FileType c,cpp :set  cindent
+        autocmd FileType setlocal c,cpp :set  cindent
         " Special highlights configurations
         autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
     augroup END
@@ -187,7 +189,7 @@
     augroup END
     " }}}
 
-
+endif
 " }}}
 
 " Plugins ---------------------- {{{
@@ -195,15 +197,17 @@
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
     
-    augroup nerdtree_group
-        "autocmd!
-        " Nerd tree config
-        " Open NERDTree whe vim starts up if no files were specified
-        autocmd vimenter * if !argc() | NERDTree | endif
-        " Close vim if the only window left is NERDTree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-        let NERDTreeQuitOnOpen=1
-    augroup END
+    if has("autocmd")
+        augroup nerdtree_group
+            "autocmd!
+            " Nerd tree config
+            " Open NERDTree whe vim starts up if no files were specified
+            autocmd vimenter * if !argc() | NERDTree | endif
+            " Close vim if the only window left is NERDTree
+            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+            let NERDTreeQuitOnOpen=1
+        augroup END
+    endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -414,37 +418,6 @@
 
     " Typos correction
     iabbrev Caldeorn Calderon
-
-    augroup filetypes_abbreviations
-        autocmd!
-        autocmd FileType c,h,cpp,hpp :iabbrev <buffer> /** /********************************************************************************
-        autocmd FileType c,h,cpp,hpp :iabbrev <buffer> **/ ********************************************************************************/
-
-        autocmd FileType python :iabbrev def def :<left>
-        autocmd FileType python :iabbrev class class :<left>
-        autocmd FileType python :iabbrev if if :<left>
-        autocmd FileType python :iabbrev for for :<left>
-        
-        autocmd FileType tex :iabbrev vtmis VTMIS
-        autocmd FileType tex :iabbrev vts VTS
-        autocmd FileType tex :iabbrev vts. VTS.
-        autocmd FileType tex :iabbrev vtss VTSs
-        autocmd FileType tex :iabbrev Sao São
-        autocmd FileType tex :iabbrev nao não
-        autocmd FileType tex :iabbrev Nao Não
-        autocmd FileType tex :iabbrev ja já
-        autocmd FileType tex :inoremap cao ção
-        autocmd FileType tex :inoremap coes ções
-        autocmd FileType tex :inoremap sao são
-        autocmd FileType tex :inoremap soes sões
-        autocmd FileType tex :inoremap tao tão
-        autocmd FileType tex :inoremap ã ã
-        autocmd FileType tex :inoremap â â
-        autocmd FileType tex :inoremap é é
-        autocmd FileType tex :inoremap eh é
-        autocmd FileType tex :iabbrev <buffer> -ns- %-------------------------------------Novo Slide---------------------------------
-        autocmd FileType tex :noremap -- o%-------------------------------------------------------------------------------<esc>
-    augroup END
 
 " }}}
 

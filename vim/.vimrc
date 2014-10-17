@@ -16,6 +16,8 @@
     " Pluggins to manage
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-repeat'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
@@ -35,7 +37,7 @@
     "filetype on
     "filetype plugin on
 
-    syntax on
+    syntax enable
 
     set encoding=utf8 nobomb
 
@@ -141,11 +143,11 @@
     " No error bells
     set noerrorbells
 
-    " Start scrolling 3 lines before the horizontal window border
-    set scrolloff=3
-
     " Show pressed keys in the status bar
     set showcmd
+
+    " Allow Vim to create hidden buffers without the !
+    set hidden
 
 " }}}
 
@@ -224,7 +226,11 @@ endif
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 
+    " jump to the first error
     let g:syntastic_auto_jump=2
+    " populate vim errors list with the compilation errors. Use :lne[xt]
+    " :lp[revious] to navigate the errors.
+    let g:syntastic_always_populate_loc_list=1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -298,8 +304,6 @@ endif
     " active when the command is used.
     nnoremap <leader>r :set relativenumber!<cr>
 
-    " Use nohlsearch
-    nnoremap <leader>s :nohlsearch<cr>
     " very-magic search
     nnoremap // /\v
 

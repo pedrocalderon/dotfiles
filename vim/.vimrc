@@ -18,12 +18,24 @@
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-unimpaired'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'Townk/vim-autoclose'
     Plugin 'corntrace/bufexplorer'
     Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'majutsushi/tagbar'
+    "Plugin 'mbbill/undotree'
+    "SnipMate + dependencies
+        Plugin 'MarcWeber/vim-addon-mw-utils'
+        Plugin 'tomtom/tlib_vim'
+        Plugin 'garbas/vim-snipmate'
+        Plugin 'honza/vim-snippets'
+    Plugin 'vim-scripts/Gundo'
+    Plugin 'bling/vim-airline'
+        
 
     " All pluffins must be added before the following line
     call vundle#end()
@@ -33,13 +45,18 @@
 
 " Basic settings --------------- {{{
 
-    " Unactive once it is required by vundle:
+    "Unactive once it is required by vundle:
     "filetype on
     "filetype plugin on
 
     syntax enable
 
     set encoding=utf8 nobomb
+
+    " enavle per-directory .vimrc files
+    set exrc
+    " disable unsafe commands in local .vimrc files
+    set secure
 
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         cd C:\Users\Pedro
@@ -149,6 +166,15 @@
     " Allow Vim to create hidden buffers without the !
     set hidden
 
+    " mouse config
+    set mouse=a
+
+    " diff options
+    set diffopt=iwhite " ignore differences in whitespaces
+
+    " term color
+    set t_Co=256
+
 " }}}
 
 " Autocomands ---------------------- {{{
@@ -192,6 +218,19 @@ if has("autocmd")
     augroup END
     " }}}
 
+    " Better commits
+    augroup better_commits
+        autocmd!
+        autocmd FileType gitcommit  setlocal spell spelllang=en  "git
+        autocmd FileType svn        setlocal spell spelllang=en  "subversion
+        autocmd FileType asciidoc   setlocal spell spelllang=en  "mercurial
+    augroup END
+
+    augroup reload_vimrc
+        autocmd!
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    augroup END
+
 endif
 " }}}
 
@@ -220,11 +259,6 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Syntastic configs
-    
-    " Status line format
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
 
     " jump to the first error
     let g:syntastic_auto_jump=2
@@ -244,6 +278,11 @@ endif
     " `s{char}{char}{label}`
     " Need one more keystroke, but on average, it may be more comfortable.
     nmap <leader><leader>s <Plug>(easymotion-s2)
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Tagbar
+    nnoremap <silent> <F9> :TagbarToggle<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
@@ -306,6 +345,7 @@ endif
 
     " very-magic search
     nnoremap // /\v
+    nnoremap <silent> <leader>/ :nohlsearch<cr>
 
     " Esier vimrc editing
     " todo: fazer com que o vimrc use vsplit se em tela cheia, usar split
@@ -317,7 +357,6 @@ endif
     elseif has('unix')
         nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     endif
-    nnoremap <leader>sv :source $MYVIMRC<cr>
 
     " Follow links with <leader>o insted of ctrl-]
     nnoremap <buffer> <leader>o <C-]>

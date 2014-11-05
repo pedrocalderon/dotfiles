@@ -238,7 +238,8 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
-    
+    noremap <leader>n :NERDTreeToggle<CR>
+
     if has("autocmd")
         augroup nerdtree_group
             "autocmd!
@@ -323,9 +324,6 @@ endif
     noremap <leader>J <C-w>J
     noremap <leader>K <C-w>K
 
-    " NERDTree map
-    noremap <leader>n :NERDTreeToggle<CR>
-
     " insert single character with space
     nnoremap <space> i_<esc>r
 
@@ -334,18 +332,9 @@ endif
 
     " Insert lines without entering insert mode
     nnoremap <Enter> o<esc>
-    nnoremap <S-Enter> O<esc>j
-
-    " Toggles number/relativenumber
-    " todo: Fix this command to togle between relativenumber and number. The way
-    " it is implemented it togles from number to relativenumber, and them to
-    " nothing. A if is necessáry to verify if the number or relativenumber is
-    " active when the command is used.
-    nnoremap <leader>r :set relativenumber!<cr>
 
     " very-magic search
     nnoremap // /\v
-    nnoremap <silent> <leader>/ :nohlsearch<cr>
 
     " Esier vimrc editing
     " todo: fazer com que o vimrc use vsplit se em tela cheia, usar split

@@ -7,7 +7,7 @@
     filetype off
 
     " set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/vundle
+    set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
     " let Vundle manage Vundle, required
@@ -15,12 +15,27 @@
 
     " Pluggins to manage
     Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-unimpaired'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'Townk/vim-autoclose'
     Plugin 'corntrace/bufexplorer'
     Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'majutsushi/tagbar'
+    "Plugin 'mbbill/undotree'
+    "SnipMate + dependencies
+        Plugin 'MarcWeber/vim-addon-mw-utils'
+        Plugin 'tomtom/tlib_vim'
+        Plugin 'garbas/vim-snipmate'
+        Plugin 'honza/vim-snippets'
+    Plugin 'vim-scripts/Gundo'
+    Plugin 'bling/vim-airline'
+        
 
     " All pluffins must be added before the following line
     call vundle#end()
@@ -30,13 +45,18 @@
 
 " Basic settings --------------- {{{
 
-    " Unactive once it is required by vundle:
+    "Unactive once it is required by vundle:
     "filetype on
     "filetype plugin on
 
-    syntax on
+    syntax enable
 
     set encoding=utf8 nobomb
+
+    " enavle per-directory .vimrc files
+    set exrc
+    " disable unsafe commands in local .vimrc files
+    set secure
 
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         cd C:\Users\Pedro
@@ -89,9 +109,10 @@
     set gdefault
 
     " Identation
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
+    set expandtab "spaces substitute tab characters
+    set tabstop=4 "width of a tab carachter
+    set softtabstop=4 "Fine tune amount of white spaces to be inserted
+    set shiftwidth=4 "Definitions for the identetion commands
     set autoindent
     set shiftround 
 
@@ -139,12 +160,25 @@
     " No error bells
     set noerrorbells
 
-    " Start scrolling 3 lines before the horizontal window border
-    set scrolloff=3
+    " Show pressed keys in the status bar
+    set showcmd
+
+    " Allow Vim to create hidden buffers without the !
+    set hidden
+
+    " mouse config
+    set mouse=a
+
+    " diff options
+    set diffopt=iwhite " ignore differences in whitespaces
+
+    " term color
+    set t_Co=256
 
 " }}}
 
 " Autocomands ---------------------- {{{
+if has("autocmd")
 
     " The autocmd! erases the previosly loaded augroup
     " Commands run at initialization of vim
@@ -163,7 +197,7 @@
     " C/C++ arduino file settings ---------------------- {{{
     augroup filetype_c
         autocmd!
-        autocmd FileType c,cpp :set  cindent
+        autocmd FileType setlocal c,cpp :set  cindent
         " Special highlights configurations
         autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
     augroup END
@@ -184,21 +218,39 @@
     augroup END
     " }}}
 
+    " Better commits
+    augroup better_commits
+        autocmd!
+        autocmd FileType gitcommit  setlocal spell spelllang=en  "git
+        autocmd FileType svn        setlocal spell spelllang=en  "subversion
+        autocmd FileType asciidoc   setlocal spell spelllang=en  "mercurial
+    augroup END
 
+    augroup reload_vimrc
+        autocmd!
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    augroup END
+
+endif
 " }}}
 
 " Plugins ---------------------- {{{
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    augroup nerdtree_group
-        "autocmd!
-        " Nerd tree config
-        " Open NERDTree whe vim starts up if no files were specified
-        autocmd vimenter * if !argc() | NERDTree | endif
-        " Close vim if the only window left is NERDTree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-        let NERDTreeQuitOnOpen=1
-    augroup END
+    " nerdtree
+    noremap <leader>n :NERDTreeToggle<CR>
+
+    if has("autocmd")
+        augroup nerdtree_group
+            "autocmd!
+            " Nerd tree config
+            " Open NERDTree whe vim starts up if no files were specified
+            autocmd vimenter * if !argc() | NERDTree | endif
+            " Close vim if the only window left is NERDTree
+            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+            let NERDTreeQuitOnOpen=1
+        augroup END
+    endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,13 +260,30 @@
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Syntastic configs
-    
-    " Status line format
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
 
+    " jump to the first error
     let g:syntastic_auto_jump=2
+    " populate vim errors list with the compilation errors. Use :lne[xt]
+    " :lp[revious] to navigate the errors.
+    let g:syntastic_always_populate_loc_list=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " easymotion 
+    
+    " Bi-directional find motion
+    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+    " `s{char}{label}`
+    nmap s <Plug>(easymotion-s)
+    " or
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap <leader><leader>s <Plug>(easymotion-s2)
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Tagbar
+    nnoremap <silent> <F9> :TagbarToggle<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
@@ -255,9 +324,6 @@
     noremap <leader>J <C-w>J
     noremap <leader>K <C-w>K
 
-    " NERDTree map
-    noremap <leader>n :NERDTreeToggle<CR>
-
     " insert single character with space
     nnoremap <space> i_<esc>r
 
@@ -266,17 +332,7 @@
 
     " Insert lines without entering insert mode
     nnoremap <Enter> o<esc>
-    nnoremap <S-Enter> O<esc>j
 
-    " Toggles number/relativenumber
-    " todo: Fix this command to togle between relativenumber and number. The way
-    " it is implemented it togles from number to relativenumber, and them to
-    " nothing. A if is necessáry to verify if the number or relativenumber is
-    " active when the command is used.
-    nnoremap <leader>r :set relativenumber!<cr>
-
-    " Use nohlsearch
-    nnoremap <leader>s :nohlsearch<cr>
     " very-magic search
     nnoremap // /\v
 
@@ -290,7 +346,6 @@
     elseif has('unix')
         nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     endif
-    nnoremap <leader>sv :source $MYVIMRC<cr>
 
     " Follow links with <leader>o insted of ctrl-]
     nnoremap <buffer> <leader>o <C-]>
@@ -396,37 +451,6 @@
 
     " Typos correction
     iabbrev Caldeorn Calderon
-
-    augroup filetypes_abbreviations
-        autocmd!
-        autocmd FileType c,h,cpp,hpp :iabbrev <buffer> /** /********************************************************************************
-        autocmd FileType c,h,cpp,hpp :iabbrev <buffer> **/ ********************************************************************************/
-
-        autocmd FileType python :iabbrev def def :<left>
-        autocmd FileType python :iabbrev class class :<left>
-        autocmd FileType python :iabbrev if if :<left>
-        autocmd FileType python :iabbrev for for :<left>
-        
-        autocmd FileType tex :iabbrev vtmis VTMIS
-        autocmd FileType tex :iabbrev vts VTS
-        autocmd FileType tex :iabbrev vts. VTS.
-        autocmd FileType tex :iabbrev vtss VTSs
-        autocmd FileType tex :iabbrev Sao São
-        autocmd FileType tex :iabbrev nao não
-        autocmd FileType tex :iabbrev Nao Não
-        autocmd FileType tex :iabbrev ja já
-        autocmd FileType tex :inoremap cao ção
-        autocmd FileType tex :inoremap coes ções
-        autocmd FileType tex :inoremap sao são
-        autocmd FileType tex :inoremap soes sões
-        autocmd FileType tex :inoremap tao tão
-        autocmd FileType tex :inoremap ã ã
-        autocmd FileType tex :inoremap â â
-        autocmd FileType tex :inoremap é é
-        autocmd FileType tex :inoremap eh é
-        autocmd FileType tex :iabbrev <buffer> -ns- %-------------------------------------Novo Slide---------------------------------
-        autocmd FileType tex :noremap -- o%-------------------------------------------------------------------------------<esc>
-    augroup END
 
 " }}}
 

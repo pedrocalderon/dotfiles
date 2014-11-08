@@ -109,6 +109,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
+#PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
+PATH=$PATH:/home/pedro/Documents/programs/android-studio/bin
 
 alias psudo='sudo env PATH="$PATH"'
+alias android='studio.sh'

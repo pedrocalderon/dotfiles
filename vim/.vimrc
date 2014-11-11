@@ -19,6 +19,7 @@
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
+    Plugin 'tpope/vim-abolish'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
@@ -35,6 +36,8 @@
         Plugin 'honza/vim-snippets'
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
+    Plugin 'moll/vim-node'
+    Plugin 'marijnh/tern_for_vim'
         
 
     " All pluffins must be added before the following line
@@ -119,9 +122,10 @@
     " Backspace behavior
     set backspace=indent,eol,start
 
-    " Coments wrap
+    " wrap
     set textwidth=80
     set formatoptions=tcqn
+    set linebreak
 
     " Definition of the highlight color
     if (has("gui_running"))
@@ -133,6 +137,7 @@
     "set colorcolumn=+1
 
     " Backup
+    " todo: verify if the backup dir exists, if not create it.
     set backup
     set backupext=.bak
     if (has('win16') || has('win32') || has('win64') || has('win95'))
@@ -180,6 +185,7 @@
 " Autocomands ---------------------- {{{
 if has("autocmd")
 
+    " Initializations             ---------------------- {{{
     " The autocmd! erases the previosly loaded augroup
     " Commands run at initialization of vim
     augroup initializations
@@ -191,8 +197,9 @@ if has("autocmd")
         "/*autocmd BufNewFile * :write*/
         " Automatically change to normal
         " todo: fazer sair do modo insert
-        autocmd FocusLost,CursorHoldI * :echom "Perda de foco"
+        "autocmd FocusLost,CursorHoldI * :echom "Perda de foco"
     augroup END
+    " }}}
 
     " C/C++ arduino file settings ---------------------- {{{
     augroup filetype_c
@@ -218,18 +225,21 @@ if has("autocmd")
     augroup END
     " }}}
 
-    " Better commits
+    " Better commits       ---------------------- {{{
     augroup better_commits
         autocmd!
         autocmd FileType gitcommit  setlocal spell spelllang=en  "git
         autocmd FileType svn        setlocal spell spelllang=en  "subversion
         autocmd FileType asciidoc   setlocal spell spelllang=en  "mercurial
     augroup END
+    " }}}
 
+    " Source .vimrc on write it ---------------- {{{
     augroup reload_vimrc
         autocmd!
         autocmd BufWritePost $MYVIMRC source $MYVIMRC
     augroup END
+    " }}}
 
 endif
 " }}}
@@ -286,6 +296,12 @@ endif
     nnoremap <silent> <F9> :TagbarToggle<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "gundo
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_preview_bottom = 1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " }}}
 
 " Remaps ---------------------- {{{
@@ -308,17 +324,13 @@ endif
     inoremap jk <esc>
     inoremap <esc> <nop>
 
-    " Alternate buffer
-    noremap <C-e> :b#<CR>
-    " :Add a :bnext and :bprevious map"
-    
-    " Navigate between buffers
+    " Navigate between windows
     noremap <leader>h <C-w>h
     noremap <leader>l <C-w>l
     noremap <leader>j <C-w>j
     noremap <leader>k <C-w>k
 
-    " Alternate buffers position
+    " Alternate window position
     noremap <leader>H <C-w>H
     noremap <leader>L <C-w>L
     noremap <leader>J <C-w>J
@@ -346,9 +358,6 @@ endif
     elseif has('unix')
         nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     endif
-
-    " Follow links with <leader>o insted of ctrl-]
-    nnoremap <buffer> <leader>o <C-]>
 
     " Spell checks
     nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
@@ -552,6 +561,4 @@ endif
 
 " }}}
 
-
-" Commands
 "command Bv -nargs=+ :vertical sb "<args>"

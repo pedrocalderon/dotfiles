@@ -124,7 +124,8 @@
 
     " wrap
     set textwidth=80
-    set formatoptions=tcqn
+    " add t flag when using text: .txt, .tex, .md, etc...
+    set formatoptions=cqn
     set linebreak
 
     " Definition of the highlight color
@@ -401,6 +402,10 @@ endif
     nmap <F3> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
     imap <F3> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
+    " Format json
+    " Make this a function executable through a ex command
+    nnoremap <F12> :%!python -m json.tool<CR>
+
 
 " }}}
 
@@ -558,7 +563,7 @@ endif
     endif
     let &cpo = s:save_cpo | unlet s:save_cpo
     " }}}
-
+    
 " }}}
 
 "command Bv -nargs=+ :vertical sb "<args>"

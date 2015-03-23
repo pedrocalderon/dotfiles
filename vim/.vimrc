@@ -37,9 +37,11 @@
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
     Plugin 'moll/vim-node'
-    Plugin 'marijnh/tern_for_vim'
+    "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
+    Plugin 'vim-scripts/closetag.vim'
+    Plugin 'edsono/vim-matchit'
         
 
     " All pluffins must be added before the following line

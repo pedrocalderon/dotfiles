@@ -28,22 +28,28 @@
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'kien/ctrlp.vim'
     Plugin 'majutsushi/tagbar'
+    Plugin 'vim-scripts/Gundo'
+    Plugin 'bling/vim-airline'
+    Plugin 'edsono/vim-matchit'
+    Plugin 'godlygeek/tabular'
     "Plugin 'mbbill/undotree'
     "SnipMate + dependencies
         Plugin 'MarcWeber/vim-addon-mw-utils'
         Plugin 'tomtom/tlib_vim'
         Plugin 'garbas/vim-snipmate'
         Plugin 'honza/vim-snippets'
-    Plugin 'vim-scripts/Gundo'
-    Plugin 'bling/vim-airline'
-    Plugin 'moll/vim-node'
+    "JS
+      "Node
+      Plugin 'moll/vim-node'
+      Plugin 'jamescarr/snipmate-nodejs'
+    "Webdev
+    Plugin 'vim-scripts/closetag.vim'
     "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
-    Plugin 'vim-scripts/closetag.vim'
-    Plugin 'edsono/vim-matchit'
     Plugin 'justinj/vim-react-snippets'
-        
+    "Need outside instalation
+    Plugin 'marijnh/tern_for_vim'
 
     " All pluffins must be added before the following line
     call vundle#end()

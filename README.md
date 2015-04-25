@@ -1,3 +1,4 @@
+##VIM
 Finish adding development environment plugins.
 
 Set spell check in english and portuguese (french spanish optional)

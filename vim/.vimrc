@@ -314,6 +314,16 @@ endif
     let g:gundo_preview_bottom = 1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "tabular
+    if exists(":Tabularize")
+      nmap <Leader>t= :Tabularize /=<CR>
+      vmap <Leader>t= :Tabularize /=<CR>
+      nmap <Leader>t: :Tabularize /:<CR>
+      nmap <Leader>t: :Tabularize /:<CR>
+    endif
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " }}}
 
 " Remaps ---------------------- {{{

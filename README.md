@@ -13,3 +13,5 @@ if has("compile_option")
 endif
 Repeat aproach for every similar types of commands that depend on a compile
 option.
+
+* Add tabular comand in insirt mode (tip in tabular video of vim cast)

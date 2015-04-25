@@ -1,13 +1,13 @@
-##VIM
-Finish adding development environment plugins.
+#VIM
+* Finish adding development environment plugins.
 
-Set spell check in english and portuguese (french spanish optional)
+* Set spell check in english and portuguese (french spanish optional)
 
-Make spell check only in comments inside programs. 
+* Make spell check only in comments inside programs. 
 
-Automatically start english spell check when editing code.
+* Automatically start english spell check when editing code.
 
-Add for portability:
+* Add for portability:
 if has("compile_option")
     "all commands inside"
 endif

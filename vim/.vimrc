@@ -42,6 +42,7 @@
     Plugin 'mxw/vim-jsx'
     Plugin 'vim-scripts/closetag.vim'
     Plugin 'edsono/vim-matchit'
+    Plugin 'justinj/vim-react-snippets'
         
 
     " All pluffins must be added before the following line
@@ -117,9 +118,9 @@
 
     " Identation
     set expandtab "spaces substitute tab characters
-    set tabstop=4 "width of a tab carachter
-    set softtabstop=4 "Fine tune amount of white spaces to be inserted
-    set shiftwidth=4 "Definitions for the identetion commands
+    set tabstop=2 "width of a tab carachter
+    set softtabstop=2 "Fine tune amount of white spaces to be inserted
+    set shiftwidth=2 "Definitions for the identetion commands
     set autoindent
     set shiftround 
 

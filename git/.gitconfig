@@ -1,0 +1,17 @@
+[user]
+	name = pcalderon
+	email = pedroc@revmob.com
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[alias]
+	grep = grep --break --heading --line-number
+	oneline = log --pretty=oneline
+	logs = log --oneline --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	last = log -p -2
+	co = checkout
+  br = branch
+[core]
+	excludesfile = /home/pcalderon/.gitignore_global
+[credential]
+	helper = cache --timeout=72000

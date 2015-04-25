@@ -3,3 +3,5 @@ vim/.vim/.netrwhist
 vim/.vim/bundle/**
 vim/.vim/eclim/**
 vim/.vim/plugin/**
+vim/.vimBackup/**
+!vim/.vimBackup/.placleHolder

@@ -1,0 +1,2 @@
+The only function of this file is garantee that .vimBackup dir
+will be added to the remote git repo of dotfiles

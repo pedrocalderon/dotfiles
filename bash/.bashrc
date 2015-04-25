@@ -28,7 +28,7 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -79,15 +79,19 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -109,8 +113,70 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
-PATH=$PATH:/home/pedro/Documents/programs/android-studio/bin
+# RevMob setup config
+#==============================================================================#
+if [ -f $HOME/.bash_profile ]; then
+  source $HOME/.bash_profile
+fi
 
-alias psudo='sudo env PATH="$PATH"'
-alias android='studio.sh'
+# alias
+alias rev="cd $HOME/development/revmob/ && ls"
+alias cv2="cd $HOME/development/revmob/consoleV2"
+
+# functions
+function dumpMediation ()
+{
+    cd /data/db
+    for i in ad_networks mediation_medias mediation_medias_summaries
+    do
+        mongodump -u heroku_app -p 9agzczbnSwEm8M0eUYycYpqx --host rs2-db06.revmob.com:27018 -d mobile-ads -c $i
+        mongorestore -d ad-server -c $i dump/mobile-ads/$i.bson --drop
+    done
+}
+#==============================================================================#
+
+# My config
+#==============================================================================#
+# .bashrc manipulation
+alias eb="vim ~/.bashrc"
+alias sb="source ~/.bashrc"
+
+# common directories
+alias desk="cd ~/Desktop && ls"
+alias docs="cd ~/Documents && ls"
+alias estudos="cd $HOME/Documents/estudos/ && ls"
+
+# git
+alias ga="git add -A"
+alias gc="git commit"
+alias gac="git add -A; git commit"
+alias gsa="git add"
+alias gr="git rm"
+
+# npm
+alias devb="npm run devb"
+alias devs="npm run devs"
+alias devf="npm run devf"
+
+# Misc
+alias open="gnome-open"
+
+# functions
+
+function cdnew ()
+{
+    if [ -d $1 ]; then
+        echo "directory $1 already exists, entering it"
+        cd $1
+    else
+        mkdir $1 && cd $1
+        echo "dir $1 created"
+    fi
+}
+
+function changeExtention()
+{
+  for f in *.$1; do
+    mv -- "$f" "${f%.$1}".$2
+  done
+}

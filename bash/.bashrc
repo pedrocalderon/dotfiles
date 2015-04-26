@@ -145,6 +145,7 @@ alias sb="source ~/.bashrc"
 alias desk="cd ~/Desktop && ls"
 alias docs="cd ~/Documents && ls"
 alias estudos="cd $HOME/Documents/estudos/ && ls"
+alias dotfiles="cd $HOME/dotfiles"
 
 # git
 alias ga="git add -A"
@@ -160,6 +161,8 @@ alias devf="npm run devf"
 
 # Misc
 alias open="gnome-open"
+alias install="sudo apt-get install -y"
+alias update="sudo apt-get update"
 
 # functions
 

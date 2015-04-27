@@ -260,24 +260,21 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
-    noremap <leader>n :NERDTreeToggle<CR>
+    if exists(":NERDTreeToggle")
+      noremap <leader>n :NERDTreeToggle<CR>
 
-    if has("autocmd")
-        augroup nerdtree_group
-            "autocmd!
-            " Nerd tree config
-            " Open NERDTree whe vim starts up if no files were specified
-            autocmd vimenter * if !argc() | NERDTree | endif
-            " Close vim if the only window left is NERDTree
-            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-            let NERDTreeQuitOnOpen=1
-        augroup END
+      if has("autocmd")
+          augroup nerdtree_group
+              "autocmd!
+              " Nerd tree config
+              " Open NERDTree whe vim starts up if no files were specified
+              autocmd vimenter * if !argc() | NERDTree | endif
+              " Close vim if the only window left is NERDTree
+              autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+              let NERDTreeQuitOnOpen=1
+          augroup END
+      endif
     endif
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    nnoremap s <Plug>(easymotion-s)
-
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -305,13 +302,17 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Tagbar
-    nnoremap <silent> <F9> :TagbarToggle<CR>
+    if exists(":TagbarToggle")
+      nnoremap <silent> <F9> :TagbarToggle<CR>
+    endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "gundo
-    nnoremap <F5> :GundoToggle<CR>
-    let g:gundo_preview_bottom = 1
+    if exists("GundoToggle")
+      nnoremap <F5> :GundoToggle<CR>
+      let g:gundo_preview_bottom = 1
+    endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -321,6 +322,16 @@ endif
       vmap <Leader>t= :Tabularize /=<CR>
       nmap <Leader>t: :Tabularize /:<CR>
       nmap <Leader>t: :Tabularize /:<CR>
+    endif
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "ctrlP
+    if exists(":CtrlP")
+      let g:ctrlp_map = '<c-p>'
+      let g:ctrlp_cmd = 'CtrlP'
+
+      let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

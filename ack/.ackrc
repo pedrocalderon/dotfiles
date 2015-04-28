@@ -1,0 +1,10 @@
+# Sort files lexically
+--sort-files
+
+#Always color, even if piping to a another program
+--color
+
+--pager=less -r
+
+#Types manipulation
+--type-add=js=jsx

@@ -158,8 +158,9 @@ alias devb="npm run devb"
 alias devs="npm run devs"
 alias devf="npm run devf"
 
-# Misc
+# Abreviations
 alias open="gnome-open"
+alias ack="ack-grep"
 
 # functions
 

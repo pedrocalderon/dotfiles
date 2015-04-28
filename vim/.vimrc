@@ -49,6 +49,7 @@
     Plugin 'mxw/vim-jsx'
     Plugin 'justinj/vim-react-snippets'
     "Need outside instalation
+    Plugin 'mileszs/ack.vim'
     Plugin 'marijnh/tern_for_vim'
 
     " All pluffins must be added before the following line
@@ -260,20 +261,18 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
-    if exists(":NERDTreeToggle")
-      noremap <leader>n :NERDTreeToggle<CR>
+    noremap <leader>n :NERDTreeToggle<CR>
 
-      if has("autocmd")
-          augroup nerdtree_group
-              "autocmd!
-              " Nerd tree config
-              " Open NERDTree whe vim starts up if no files were specified
-              autocmd vimenter * if !argc() | NERDTree | endif
-              " Close vim if the only window left is NERDTree
-              autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-              let NERDTreeQuitOnOpen=1
-          augroup END
-      endif
+    if has("autocmd")
+        augroup nerdtree_group
+            "autocmd!
+            " Nerd tree config
+            " Open NERDTree whe vim starts up if no files were specified
+            autocmd vimenter * if !argc() | NERDTree | endif
+            " Close vim if the only window left is NERDTree
+            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+            let NERDTreeQuitOnOpen=1
+        augroup END
     endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -333,6 +332,13 @@ endif
 
       let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     endif
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Fugitive
+    noremap gs :Gstatus<CR>
+    noremap gu :call PullFromCurrentBranch()<CR>
+    noremap gp :call PushToCurrentBranch()<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
@@ -594,6 +600,22 @@ endif
     nmap <unique> <Leader>vl <Plug>VLToggle
     endif
     let &cpo = s:save_cpo | unlet s:save_cpo
+    " }}}
+
+    " Fugitive auxiliary functions ---------------------- {{{
+    function! PushToCurrentBranch()
+      let branch = fugitive#statusline()
+      let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
+      exe ":silent Git submodule foreach git push origin master"
+      exe ":Git push origin" . branch
+    endfunction
+
+    function! PullFromCurrentBranch()
+      let branch = fugitive#statusline()
+      let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
+      exe ":silent Git submodule foreach git pull --no-edit origin master"
+      exe ":Git pull --no-edit origin" . branch
+    endfunction
     " }}}
     
 " }}}

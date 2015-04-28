@@ -7,4 +7,9 @@
 --pager=less -r
 
 #Types manipulation
---type-add=js=jsx
+--type-add=js=ext:jsx
+
+# Ignore files
+--ignore-file=ext:log
+
+# Ignore dirs

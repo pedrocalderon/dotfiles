@@ -32,6 +32,7 @@
     Plugin 'bling/vim-airline'
     Plugin 'edsono/vim-matchit'
     Plugin 'godlygeek/tabular'
+    Plugin 'airblade/vim-rooter'
     "Plugin 'mbbill/undotree'
     "SnipMate + dependencies
         Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -79,7 +80,7 @@
     elseif has('unix')
         cd ~
     endif
-    set autochdir
+    set noautochdir
 
     set number
 
@@ -160,7 +161,12 @@
     endif
 
     " File completiton wildcards
+    set wildignore=*/tmp/*,*.so,*.swp
+    set wildignore=*.zip,*.tar.gz,*.tar.xz
+    "MatLab files
     set wildignore=*.asv,*.fig,*.mat
+    "Windows
+    set wildignore=*\\tmp\\*,*.exe
 
     " Highlight groups
     highlight MyGreenGroup ctermbg=green guibg=green
@@ -330,7 +336,21 @@ endif
       let g:ctrlp_map = '<c-p>'
       let g:ctrlp_cmd = 'CtrlP'
 
+      let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
       let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+      if executable('ag')
+        let g:ctrlp_user_command = 'ag %s -l 
+              \ --nocolor 
+              \ --nogroup
+              \ --hidden
+              \ --ignore .git
+              \ --ignore .svn
+              \ --ignore .hg
+              \ --ignore .swp
+              \ -g ""'
+      endif
     endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -339,6 +359,25 @@ endif
     noremap gs :Gstatus<CR>
     noremap gu :call PullFromCurrentBranch()<CR>
     noremap gp :call PushToCurrentBranch()<CR>
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Tern
+    let g:tern_map_keys=1
+    let g:tern_show_argument_hints='on_hold'
+
+    noremap <Leader>td :TernDef<CR>
+    noremap <Leader>tpd :TernDefPreview<CR>
+    noremap <Leader>tsd :TernDefSplit<CR>
+    noremap <Leader>ttd :TernDefTab<CR>
+    noremap <Leader>tt :TernType<CR>
+    noremap <Leader>tr :TernRefs<CR>
+    noremap <Leader>tR :TernRename<CR>
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Rooter
+    let g:rooter_silent_chdir=1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}

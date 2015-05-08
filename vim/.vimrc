@@ -373,6 +373,11 @@ endif
     noremap <Leader>tt :TernType<CR>
     noremap <Leader>tr :TernRefs<CR>
     noremap <Leader>tR :TernRename<CR>
+
+    augroup tern_overides
+        autocmd!
+        autocmd FileType javascript noremap <c-]> :TernDef<CR>
+    augroup END
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

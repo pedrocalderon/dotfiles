@@ -145,14 +145,21 @@ alias sb="source ~/.bashrc"
 alias desk="cd ~/Desktop && ls"
 alias docs="cd ~/Documents && ls"
 alias estudos="cd $HOME/Documents/estudos/ && ls"
+alias livros="cd $HOME/Documents/livros/ && ls"
 alias dotfiles="cd $HOME/dotfiles"
 
 # git
-alias ga="git add -A"
+alias ga="git add"
+alias gaa="git add -A"
 alias gc="git commit"
 alias gac="git add -A; git commit"
-alias gsa="git add"
-alias gr="git rm"
+alias grm="git rm"
+alias gr="git reset"
+alias gco="git checkout"
+alias gs="git stash"
+alias gsl="git stash list"
+alias gsp="git stash pop"
+alias ss="git status -sb"
 
 # npm
 alias devb="npm run devb"
@@ -167,7 +174,15 @@ alias ack="ack-grep"
 alias install="sudo apt-get install -y"
 alias update="sudo apt-get update"
 
+# Rev
+alias o="vim app.js"
+
 # functions
+
+function cdl ()
+{
+  cd $1 && ls
+}
 
 function cdnew ()
 {

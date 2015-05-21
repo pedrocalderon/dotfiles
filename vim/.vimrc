@@ -23,7 +23,8 @@
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    Plugin 'Townk/vim-autoclose'
+    "Autoclose space map breaks abbreviations
+    "Plugin 'Townk/vim-autoclose'
     Plugin 'corntrace/bufexplorer'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'kien/ctrlp.vim'
@@ -55,19 +56,14 @@
 
     " All pluffins must be added before the following line
     call vundle#end()
-    filetype plugin indent on
     
 " ------------------------------ }}}
 
 " Basic settings --------------- {{{
 
-    "Unactive once it is required by vundle:
-    "filetype on
-    "filetype plugin on
+    filetype plugin indent on
 
     syntax enable
-
-    set encoding=utf8 nobomb
 
     " enavle per-directory .vimrc files
     set exrc

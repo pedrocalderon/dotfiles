@@ -138,8 +138,8 @@ function dumpMediation ()
 # My config
 #==============================================================================#
 # .bashrc manipulation
-alias eb="vim ~/.bashrc"
-alias sb="source ~/.bashrc"
+alias brc="vim ~/.bashrc"
+alias sbrc="source ~/.bashrc"
 
 # common directories
 alias desk="cd ~/Desktop && ls"

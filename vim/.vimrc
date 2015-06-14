@@ -256,6 +256,13 @@ if has("autocmd")
     augroup END
     " }}}
 
+    " Source less filetype ---------------- {{{
+    augroup less_ft
+        autocmd!
+        autocmd BufRead,BufNewFile *.less set filetype=css
+    augroup END
+    " }}}
+
 endif
 " }}}
 

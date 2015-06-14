@@ -120,8 +120,15 @@ if [ -f $HOME/.bash_profile ]; then
 fi
 
 # alias
-alias rev="cd $HOME/development/revmob/ && ls"
-alias cv2="cd $HOME/development/revmob/consoleV2"
+REV="$HOME/development/revmob"
+alias rev="cd  $REV && ls"
+alias cv2="cd $REV/consoleV2"
+alias api="cd $REV/userAPI"
+
+# npm
+alias devb="npm run devb"
+alias devs="npm run devs"
+alias devf="npm run devf"
 
 # functions
 function dumpMediation ()
@@ -135,20 +142,20 @@ function dumpMediation ()
 }
 #==============================================================================#
 
-# My config
+#My config
 #==============================================================================#
-# .bashrc manipulation
+#.bashrc manipulation
 alias brc="vim ~/.bashrc"
 alias sbrc="source ~/.bashrc"
 
-# common directories
+#common directories
 alias desk="cd ~/Desktop && ls"
 alias docs="cd ~/Documents && ls"
 alias estudos="cd $HOME/Documents/estudos/ && ls"
 alias livros="cd $HOME/Documents/livros/ && ls"
 alias dotfiles="cd $HOME/dotfiles"
 
-# git
+#git
 alias ga="git add"
 alias gaa="git add -A"
 alias gc="git commit"
@@ -160,24 +167,28 @@ alias gs="git stash"
 alias gsl="git stash list"
 alias gsp="git stash pop"
 alias ss="git status -sb"
+alias gm="git merge --no-ff"
+alias gb="git branch"
 
-# npm
-alias devb="npm run devb"
-alias devs="npm run devs"
-alias devf="npm run devf"
-
-# Abreviations
+#Abreviations
 alias open="gnome-open"
 alias ack="ack-grep"
 
-# Misc
+#Misc
 alias install="sudo apt-get install -y"
 alias update="sudo apt-get update"
 
-# Rev
-alias o="vim app.js"
+#Rev
 
-# functions
+#functions
+
+function o() {
+  if [[ -f app.js ]]; then
+    vim app.js
+  else
+    gnome-open $1
+  fi
+}
 
 function cdl ()
 {

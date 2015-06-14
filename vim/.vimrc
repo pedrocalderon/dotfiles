@@ -36,10 +36,11 @@
     Plugin 'airblade/vim-rooter'
     "Plugin 'mbbill/undotree'
     "SnipMate + dependencies
-        Plugin 'MarcWeber/vim-addon-mw-utils'
-        Plugin 'tomtom/tlib_vim'
-        Plugin 'garbas/vim-snipmate'
-        Plugin 'honza/vim-snippets'
+        "Plugin 'MarcWeber/vim-addon-mw-utils'
+        "Plugin 'tomtom/tlib_vim'
+        "Plugin 'garbas/vim-snipmate'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
     "JS
       "Node
       Plugin 'moll/vim-node'
@@ -266,7 +267,7 @@ if has("autocmd")
 endif
 " }}}
 
-" Plugins ---------------------- {{{
+" Plugins Configuration ---------------------- {{{
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
@@ -386,6 +387,15 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Rooter
     let g:rooter_silent_chdir=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "UltiSnips
+    "Do not use tab if youcompleteme is installed
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsEditSplit="vertical"
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}

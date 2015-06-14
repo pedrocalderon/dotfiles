@@ -439,7 +439,7 @@ endif
     nnoremap K i<cr><esc>$
 
     " Insert lines without entering insert mode
-    nnoremap <Enter> o<esc>
+    "nnoremap <Enter> o<esc>
 
     " very-magic search
     nnoremap // /\v

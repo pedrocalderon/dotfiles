@@ -166,6 +166,7 @@ alias gco="git checkout"
 alias gs="git stash"
 alias gsl="git stash list"
 alias gsp="git stash pop"
+alias gsd="git stash drop"
 alias ss="git status -sb"
 alias gm="git merge --no-ff"
 alias gb="git branch"
@@ -173,12 +174,11 @@ alias gb="git branch"
 #Abreviations
 alias open="gnome-open"
 alias ack="ack-grep"
+alias w="watch"
 
 #Misc
 alias install="sudo apt-get install -y"
 alias update="sudo apt-get update"
-
-#Rev
 
 #functions
 
@@ -211,4 +211,13 @@ function changeExtention()
   for f in *.$1; do
     mv -- "$f" "${f%.$1}".$2
   done
+}
+
+function watch()
+{
+  if [[ -f app.js ]]; then
+    forever -w app.js
+  else
+    echo "No app.js found in " `pwd`
+  fi
 }

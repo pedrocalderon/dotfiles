@@ -45,7 +45,6 @@
       Plugin 'jamescarr/snipmate-nodejs'
     "Webdev
     Plugin 'vim-scripts/closetag.vim'
-    "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
     Plugin 'justinj/vim-react-snippets'

@@ -23,7 +23,8 @@
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    Plugin 'Townk/vim-autoclose'
+    "Autoclose space map breaks abbreviations
+    "Plugin 'Townk/vim-autoclose'
     Plugin 'corntrace/bufexplorer'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'kien/ctrlp.vim'
@@ -35,10 +36,11 @@
     Plugin 'airblade/vim-rooter'
     "Plugin 'mbbill/undotree'
     "SnipMate + dependencies
-        Plugin 'MarcWeber/vim-addon-mw-utils'
-        Plugin 'tomtom/tlib_vim'
-        Plugin 'garbas/vim-snipmate'
-        Plugin 'honza/vim-snippets'
+        "Plugin 'MarcWeber/vim-addon-mw-utils'
+        "Plugin 'tomtom/tlib_vim'
+        "Plugin 'garbas/vim-snipmate'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
     "JS
       "Node
       Plugin 'moll/vim-node'
@@ -54,19 +56,14 @@
 
     " All pluffins must be added before the following line
     call vundle#end()
-    filetype plugin indent on
     
 " ------------------------------ }}}
 
 " Basic settings --------------- {{{
 
-    "Unactive once it is required by vundle:
-    "filetype on
-    "filetype plugin on
+    filetype plugin indent on
 
     syntax enable
-
-    set encoding=utf8 nobomb
 
     " enavle per-directory .vimrc files
     set exrc
@@ -259,10 +256,17 @@ if has("autocmd")
     augroup END
     " }}}
 
+    " Source less filetype ---------------- {{{
+    augroup less_ft
+        autocmd!
+        autocmd BufRead,BufNewFile *.less set filetype=css
+    augroup END
+    " }}}
+
 endif
 " }}}
 
-" Plugins ---------------------- {{{
+" Plugins Configuration ---------------------- {{{
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
@@ -372,11 +376,25 @@ endif
     noremap <Leader>tt :TernType<CR>
     noremap <Leader>tr :TernRefs<CR>
     noremap <Leader>tR :TernRename<CR>
+
+    augroup tern_overides
+        autocmd!
+        autocmd FileType javascript noremap <c-]> :TernDef<CR>
+    augroup END
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Rooter
     let g:rooter_silent_chdir=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "UltiSnips
+    "Do not use tab if youcompleteme is installed
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsEditSplit="vertical"
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
@@ -420,7 +438,7 @@ endif
     nnoremap K i<cr><esc>$
 
     " Insert lines without entering insert mode
-    nnoremap <Enter> o<esc>
+    "nnoremap <Enter> o<esc>
 
     " very-magic search
     nnoremap // /\v

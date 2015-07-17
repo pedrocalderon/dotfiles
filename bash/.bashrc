@@ -124,6 +124,7 @@ REV="$HOME/development/revmob"
 alias rev="cd  $REV && ls"
 alias cv2="cd $REV/consoleV2"
 alias api="cd $REV/userAPI"
+alias apir="cd $REV/userAPI && export porta=3334 && watch"
 
 # npm
 alias devb="npm run devb"
@@ -163,6 +164,7 @@ alias gac="git add -A; git commit"
 alias grm="git rm"
 alias gr="git reset"
 alias gco="git checkout"
+alias gcom="git checkout master"
 alias gs="git stash"
 alias gsl="git stash list"
 alias gsp="git stash pop"
@@ -221,3 +223,13 @@ function watch()
     echo "No app.js found in " `pwd`
   fi
 }
+
+#function deploy_front ()
+#{
+  #DEFAULT_REPO="console-env"
+
+  #Build front
+  #npm run prod
+  #export NODE_ENV=production
+  #webpack -p
+#}

@@ -14,12 +14,13 @@
     Plugin 'gmarik/Vundle.vim'
 
     " Pluggins to manage
+    Plugin 'mileszs/ack.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
     Plugin 'tpope/vim-abolish'
+    " Plugin 'tpope/vim-commentary'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
@@ -35,25 +36,21 @@
     Plugin 'godlygeek/tabular'
     Plugin 'airblade/vim-rooter'
     "Plugin 'mbbill/undotree'
-    "SnipMate + dependencies
-        "Plugin 'MarcWeber/vim-addon-mw-utils'
-        "Plugin 'tomtom/tlib_vim'
-        "Plugin 'garbas/vim-snipmate'
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
     "JS
       "Node
       Plugin 'moll/vim-node'
-      Plugin 'jamescarr/snipmate-nodejs'
+      "Plugin 'jamescarr/snipmate-nodejs'
     "Webdev
-    Plugin 'vim-scripts/closetag.vim'
+    "Plugin 'vim-scripts/closetag.vim'
+    Plugin 'mattn/emmet-vim'
     "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
     Plugin 'justinj/vim-react-snippets'
     "Need outside instalation
-    Plugin 'mileszs/ack.vim'
-    Plugin 'marijnh/tern_for_vim'
+    "Plugin 'marijnh/tern_for_vim'
 
     " All pluffins must be added before the following line
     call vundle#end()
@@ -80,6 +77,7 @@
     set noautochdir
 
     set number
+    set relativenumber
 
     set encoding=utf-8
 
@@ -378,12 +376,6 @@ endif
     noremap <Leader>tr :TernRefs<CR>
     noremap <Leader>tR :TernRename<CR>
 
-    augroup tern_overides
-        autocmd!
-        autocmd FileType javascript noremap <c-]> :TernDef<CR>
-    augroup END
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Rooter
     let g:rooter_silent_chdir=1
@@ -393,9 +385,21 @@ endif
     "UltiSnips
     "Do not use tab if youcompleteme is installed
     let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     let g:UltiSnipsEditSplit="vertical"
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "vim-jsx
+    "let g:jsx_ext_required = 0 "allow jsx in normal js files
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Emmet
+    let g:user_emmet_install_global = 0
+    let g:user_emmet_leader_key='<leader>'
+    autocmd FileType html,css,javascript EmmetInstall
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
@@ -469,9 +473,6 @@ endif
     " The group highlight group Error can be used.
     nnoremap <leader>w :match MyGreenGroup /\v +$/<cr>
     nnoremap <leader>W :match<cr>
-
-    " Jump 80 characters
-    nnoremap LL 080l
 
     " Insert current file name 
     inoremap \fn <C-R>=expand("%:t:r")<CR>

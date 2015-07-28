@@ -118,6 +118,7 @@ fi
 if [ -f $HOME/.bash_profile ]; then
   source $HOME/.bash_profile
 fi
+unalias jobs
 
 # alias
 REV="$HOME/development/revmob"
@@ -125,9 +126,10 @@ alias rev="cd  $REV && ls"
 alias cv2="cd $REV/consoleV2"
 alias api="cd $REV/userAPI"
 alias apir="cd $REV/userAPI && export porta=3334 && watch"
+alias ishop="cd $REV/ishop-console"
+alias ishopapi="cd $REV/ishopApi"
 
 # npm
-alias devb="npm run devb"
 alias devs="npm run devs"
 alias devf="npm run devf"
 
@@ -177,6 +179,8 @@ alias gb="git branch"
 alias open="gnome-open"
 alias ack="ack-grep"
 alias w="watch"
+alias wp="webpack_watch"
+alias wf="watch_front"
 
 #Misc
 alias install="sudo apt-get install -y"
@@ -217,11 +221,108 @@ function changeExtention()
 
 function watch()
 {
-  if [[ -f app.js ]]; then
-    forever -w app.js
+  command -v forever >/dev/null 2>&1 || { echo >&2 "Forever is required. Aborting!"; return 1; }
+
+  CUSTOM_DIR=`pwd`
+  RUN_FILE="app.js"
+
+  #read options
+  TEMP=`getopt -o fd: --long directory:,file: -n 'syncsetup' -- "$@"`
+  eval set -- "$TEMP"
+  
+  #extract options and arguments into variables
+  while true; do
+      case "$1" in
+          -d|--directory)
+            case "$2" in
+              "") shift 2 ;;
+              *) CUSTOM_DIR=$2 ; shift 2 ;;
+            esac ;;
+          -f|--file)
+            case "$2" in
+              "") shift 2 ;;
+              *) RUN_FILE=$2 ; shift 2 ;;
+            esac ;;
+          --) shift ; break ;;
+          *) echo "Internal error!" ; return 1 ;;
+      esac
+  done
+
+  if [[ "$CUSTOM_DIR" = `pwd` ]]; then
+    FILE="$RUN_FILE"
+  else
+    FILE="$CUSTOM_DIR/$RUN_FILE"
+  fi
+
+  if [[ -f "$FILE" ]]; then
+    (cd $CUSTOM_DIR && forever -w "$RUN_FILE")
   else
     echo "No app.js found in " `pwd`
   fi
+}
+
+function webpack_watch()
+{
+  #validate if webpack is installed
+  command -v webpack >/dev/null 2>&1 || { echo >&2 "Webpack is required. Aborting!"; return 1; }
+
+  RUN_WEBPACK_SERVER=false
+  BUILD_PRODUCTION=false
+  CUSTOM_DIR=`pwd`
+  CONFIG_FILE="webpack.config.js"
+
+  #read options
+  TEMP=`getopt -o spd: --long server,production,directory: -n 'syncsetup' -- "$@"`
+  eval set -- "$TEMP"
+  
+  #extract options and arguments into variables
+  while true; do
+      case "$1" in
+          -s|--server) RUN_WEBPACK_SERVER=true ; shift ;;
+          -p|--production) BUILD_PRODUCTION=true ; shift ;;
+          -d|--directory)
+            case "$2" in
+              "") shift 2 ;;
+              *) CUSTOM_DIR=$2 ; shift 2 ;;
+            esac ;;
+          --) shift ; break ;;
+          *) echo "Internal error!" ; return 1 ;;
+      esac
+  done
+
+  #validate if webpack.config.js is present
+  if [[ ! -f "$CUSTOM_DIR/webpack.config.js" ]]; then
+    echo "No webpack.config.js found in " `pwd`
+    return 1
+  else
+    echo "Running webpack in: $CUSTOM_DIR"
+  fi
+
+  #TODO: make webpack run from different directory
+  if [ "$RUN_WEBPACK_SERVER" = true ]; then
+    (cd $CUSTOM_DIR && webpack-dev-server --devtool eval --progress --colors --content-base build)
+  elif [ "$BUILD_PRODUCTION" = true ]; then
+    echo "WebPack: building for production"
+    export NODE_ENV=production
+    (cd $CUSTOM_DIR && webpack -p)
+  else
+    (cd $CUSTOM_DIR && webpack --progress --colors --watch --config "$CONFIG_FILE")
+  fi
+}
+
+function watch_front(){
+  watch &
+  webpack_watch &
+  #Be carefull this program kills every instance of node
+  trap "pkill node" EXIT SIGINT
+}
+
+alias rcv2="run_consoleV2"
+function run_consoleV2() {
+  watch -d "$REV/consoleV2" &
+  webpack_watch -d "$REV/consoleV2" &
+  (export porta=3334 && watch -d "$REV/userAPI")
+  trap "pkill node" EXIT SIGINT
 }
 
 #function deploy_front ()

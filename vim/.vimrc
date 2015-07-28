@@ -37,7 +37,7 @@
     Plugin 'airblade/vim-rooter'
     "Plugin 'mbbill/undotree'
     Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    "Plugin 'honza/vim-snippets'
     "JS
       "Node
       Plugin 'moll/vim-node'
@@ -48,7 +48,6 @@
     "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
-    Plugin 'justinj/vim-react-snippets'
     "Need outside instalation
     "Plugin 'marijnh/tern_for_vim'
 
@@ -292,6 +291,10 @@ endif
     " populate vim errors list with the compilation errors. Use :lne[xt]
     " :lp[revious] to navigate the errors.
     let g:syntastic_always_populate_loc_list=1
+    "let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_javascript_checkers = ["eslint"]
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -309,17 +312,13 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Tagbar
-    if exists(":TagbarToggle")
-      nnoremap <silent> <F9> :TagbarToggle<CR>
-    endif
+    nnoremap <silent> <F9> :TagbarToggle<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "gundo
-    if exists("GundoToggle")
-      nnoremap <F5> :GundoToggle<CR>
-      let g:gundo_preview_bottom = 1
-    endif
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_preview_bottom = 1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -364,19 +363,6 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Tern
-    let g:tern_map_keys=1
-    let g:tern_show_argument_hints='on_hold'
-
-    noremap <Leader>td :TernDef<CR>
-    noremap <Leader>tpd :TernDefPreview<CR>
-    noremap <Leader>tsd :TernDefSplit<CR>
-    noremap <Leader>ttd :TernDefTab<CR>
-    noremap <Leader>tt :TernType<CR>
-    noremap <Leader>tr :TernRefs<CR>
-    noremap <Leader>tR :TernRename<CR>
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Rooter
     let g:rooter_silent_chdir=1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -388,6 +374,7 @@ endif
     let g:UltiSnipsJumpForwardTrigger="<tab>"
     let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     let g:UltiSnipsEditSplit="vertical"
+    nnoremap <leader>es :UltiSnipsEdit<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

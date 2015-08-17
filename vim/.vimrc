@@ -287,7 +287,7 @@ endif
     " Syntastic configs
 
     " jump to the first error
-    let g:syntastic_auto_jump=2
+    let g:syntastic_auto_jump=0
     " populate vim errors list with the compilation errors. Use :lne[xt]
     " :lp[revious] to navigate the errors.
     let g:syntastic_always_populate_loc_list=1
@@ -295,6 +295,7 @@ endif
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
     let g:syntastic_javascript_checkers = ["eslint"]
+    nnoremap <leader>ce :SyntasticReset<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -8,9 +8,34 @@ else {
 $0
 endsnippet
 
+snippet if
+if (${1:true}) {
+	$2
+}
+$0
+endsnippet
+
+snippet fun
+function${1: ${2:defaultName}}($3){
+	$4
+}
+endsnippet
+
+snippet :f "method"
+$1: function($3) {
+	$4
+}${2:,}
+endsnippet
+
 snippet me
 module.exports = {
 	$1
+}
+endsnippet
+
+snippet mef
+module.exports = function${1: ${2:defaultName}}($3) {
+	$4
 }
 endsnippet
 
@@ -19,7 +44,33 @@ $1: React.createFactory('$1')${2:,}
 endsnippet
 
 snippet cl
-console.log(${1:'value'})
+console.log(${1:'value'})$0
+endsnippet
+
+snippet re
+var $1 = require('${2:$1}')
+endsnippet
+
+snippet for
+for(var ${1:key} in ${2:obj}) {
+	$0
+}
+endsnippet
+
+#
+#Express
+#
+snippet get
+app.get('$1', function(req, res) {
+	$2
+})
+$0
+endsnippet
+
+snippet post
+app.post('$1', function(req, res) {
+	$2
+})
 $0
 endsnippet
 
@@ -139,4 +190,18 @@ snippet jsx "define jsx dom" b
 /**
  * @jsx React.DOM
  */
+endsnippet
+
+#
+#ES6
+#
+
+snippet ef "export function"
+	export function $1($2) {
+		$3
+	}
+endsnippet
+
+snippet efi "export function inline"
+	export function $1($2) { $3 }
 endsnippet

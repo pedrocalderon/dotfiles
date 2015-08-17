@@ -52,7 +52,6 @@
     Plugin 'justinj/vim-react-snippets'
     "Need outside instalation
     Plugin 'mileszs/ack.vim'
-    Plugin 'marijnh/tern_for_vim'
 
     " All pluffins must be added before the following line
     call vundle#end()
@@ -366,21 +365,21 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Tern
-    let g:tern_map_keys=1
-    let g:tern_show_argument_hints='on_hold'
+    "let g:tern_map_keys=1
+    "let g:tern_show_argument_hints='on_hold'
 
-    noremap <Leader>td :TernDef<CR>
-    noremap <Leader>tpd :TernDefPreview<CR>
-    noremap <Leader>tsd :TernDefSplit<CR>
-    noremap <Leader>ttd :TernDefTab<CR>
-    noremap <Leader>tt :TernType<CR>
-    noremap <Leader>tr :TernRefs<CR>
-    noremap <Leader>tR :TernRename<CR>
+    "noremap <Leader>td :TernDef<CR>
+    "noremap <Leader>tpd :TernDefPreview<CR>
+    "noremap <Leader>tsd :TernDefSplit<CR>
+    "noremap <Leader>ttd :TernDefTab<CR>
+    "noremap <Leader>tt :TernType<CR>
+    "noremap <Leader>tr :TernRefs<CR>
+    "noremap <Leader>tR :TernRename<CR>
 
-    augroup tern_overides
-        autocmd!
-        autocmd FileType javascript noremap <c-]> :TernDef<CR>
-    augroup END
+    "augroup tern_overides
+        "autocmd!
+        "autocmd FileType javascript noremap <c-]> :TernDef<CR>
+    "augroup END
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

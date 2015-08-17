@@ -12,6 +12,6 @@
 	co = checkout
   br = branch
 [core]
-	excludesfile = /home/pcalderon/.gitignore_global
+	excludesfile = /home/pedro/.gitignore_global
 [credential]
 	helper = cache --timeout=72000

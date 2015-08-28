@@ -121,13 +121,19 @@ fi
 unalias jobs
 
 # alias
+alias custom="vim ~/.bash_custom"
 REV="$HOME/development/revmob"
 alias rev="cd  $REV && ls"
-alias cv2="cd $REV/consoleV2"
-alias api="cd $REV/userAPI"
-alias apir="cd $REV/userAPI && export porta=3334 && watch"
-alias ishop="cd $REV/ishop-console"
-alias ishopapi="cd $REV/ishopApi"
+alias dev="cd $REV && cd .."
+alias console="cd $REV/ishop-console"
+alias api="cd $REV/ishopApi"
+alias router="cd $REV/beaconRouter"
+alias site="cd $REV/beeConnectSite"
+
+alias consoleo="cd $REV/ishop-console && vim app.js"
+alias apio="cd $REV/ishopApi && vim app.js"
+alias routero="cd $REV/beaconRouter && vim app.js"
+alias siteo="cd $REV/beeConnectSite && vim app.js"
 
 # npm
 alias devs="npm run devs"
@@ -167,6 +173,7 @@ alias grm="git rm"
 alias gr="git reset"
 alias gco="git checkout"
 alias gcom="git checkout master"
+alias gcod="git checkout development"
 alias gs="git stash"
 alias gsl="git stash list"
 alias gsp="git stash pop"

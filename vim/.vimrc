@@ -295,7 +295,7 @@ endif
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
     let g:syntastic_javascript_checkers = ["eslint"]
-    nnoremap <leader>ce :SyntasticReset<CR>
+    nnoremap <leader>ce :SyntasticToggleMode<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -486,9 +486,14 @@ endif
     nmap <F3> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
     imap <F3> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
+    " Copy/Pate maps
+    nnoremap <C-y> "*p
+    nnoremap <C-c> "*yy
+
     " Format json
     " Make this a function executable through a ex command
     nnoremap <F12> :%!python -m json.tool<CR>
+
 
 
 " }}}

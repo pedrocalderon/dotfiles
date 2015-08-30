@@ -487,7 +487,7 @@ endif
     imap <F3> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
     " Copy/Pate maps
-    nnoremap <C-y> "*p
+    nnoremap <C-y> o<esc>"*p
     nnoremap <C-c> "*yy
 
     " Format json

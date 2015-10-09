@@ -123,9 +123,13 @@ if [ -f $HOME/beaconBash.sh ]; then
 fi
 #unalias jobs
 
+if [ -d $HOME/development/beeconnect ]; then
+  REV="$HOME/development/beeconnect"
+else
+  REV="$HOME/development/revmob"
+fi
 # alias
 alias custom="vim ~/.bash_custom"
-REV="$HOME/development/revmob"
 alias rev="cd  $REV && ls"
 alias dev="cd $REV && cd .."
 alias console="cd $REV/beeconnect-console"

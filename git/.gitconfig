@@ -5,12 +5,24 @@
 	extendRegexp = true
 	lineNumber = true
 [alias]
+	a = add -A
+	st = status
+	cm = commit -m
+	br = branch
+	df = diff --color --color-words --abbrev
+	lg = log --oneline --decorate
+	co = checkout
+	mg = merge --no-ff
+	;ft = fetch origin
+	;fpo = fetch -p origin
+	;fp = fetch -p
+	;ls-rm = ls-remote --heads
+	;cl = clean -fdx
+
 	grep = grep --break --heading --line-number
 	oneline = log --pretty=oneline
 	logs = log --oneline --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	last = log -p -2
-	co = checkout
-  br = branch
 [core]
 	excludesfile = /home/pedro/.gitignore_global
 [credential]

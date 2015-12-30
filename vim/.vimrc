@@ -76,7 +76,7 @@
     set noautochdir
 
     set number
-    set relativenumber
+    "set relativenumber
 
     set encoding=utf-8
 

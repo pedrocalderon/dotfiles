@@ -12,6 +12,7 @@
 	df = diff --color --color-words --abbrev
 	lg = log --oneline --decorate
 	co = checkout
+	cob = checkout -b
 	mg = merge --no-ff
 	;ft = fetch origin
 	;fpo = fetch -p origin

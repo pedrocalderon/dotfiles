@@ -115,40 +115,18 @@ fi
 
 # RevMob setup config
 #==============================================================================#
-#if [ -f $HOME/.bash_profile ]; then
-  #source $HOME/.bash_profile
-#fi
 if [ -f $HOME/beaconBash.sh ]; then
   source $HOME/beaconBash.sh
 fi
-#unalias jobs
-
-if [ -d $HOME/development/beeconnect ]; then
-  REV="$HOME/development/beeconnect"
-else
-  REV="$HOME/development/revmob"
-fi
-# alias
-alias custom="vim ~/.bash_custom"
-alias rev="cd  $REV && ls"
-alias dev="cd $REV && cd .."
-alias console="cd $REV/beeconnect-console"
-alias api="cd $REV/ishopApi"
-alias router="cd $REV/beaconRouter"
-alias site="cd $REV/beeConnectSite"
-alias bjobs="cd $REV/beaconJobs"
-
-alias consoleo="cd $REV/beeconnect-console && vim app.js"
-alias apio="cd $REV/ishopApi && vim app.js"
-alias routero="cd $REV/beaconRouter && vim app.js"
-alias siteo="cd $REV/beeConnectSite && vim app.js"
-alias bjobso="cd $REV/beaconJobs && vim app.js"
-
-# npm
-alias devs="npm run devs"
-alias devf="npm run devf"
 
 # functions
+function build () {
+  if [ -f ./build.zip ]; then
+    rm ./build.zip
+  fi
+  zipbuild
+}
+
 function dumpMediation ()
 {
     cd /data/db
@@ -162,52 +140,8 @@ function dumpMediation ()
 
 #My config
 #==============================================================================#
-#.bashrc manipulation
-alias brc="vim ~/.bashrc"
-alias sbrc="source ~/.bashrc"
-
-#Navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias desk="cd ~/Desktop && ls"
-alias docs="cd ~/Documents && ls"
-alias estudos="cd $HOME/Documents/estudos/ && ls"
-alias livros="cd $HOME/Documents/livros/ && ls"
-alias dotfiles="cd $HOME/dotfiles"
-
-#git
-alias ga="git add"
-alias gaa="git add -A"
-alias gc="git commit"
-alias gac="git add -A; git commit"
-alias grm="git rm"
-alias gr="git reset"
-alias gco="git checkout"
-alias gcom="git checkout master"
-alias gcod="git checkout development"
-alias gs="git stash"
-alias gsl="git stash list"
-alias gsp="git stash pop"
-alias gsd="git stash drop"
-alias ss="git status -sb"
-alias gm="git merge --no-ff"
-alias gb="git branch"
-
-#Abreviations
-alias open="gnome-open"
-alias ack="ack-grep"
-alias w="watch"
-alias wp="webpack_watch"
-alias wf="watch_front"
-
-#Misc
-alias install="sudo apt-get install -y"
-alias update="sudo apt-get update"
-alias rmVimSwap="find ./ -type f -name \"\\.*sw[klmnop]\""
-alias as="XMODIFIERS= ~/.programs/android-studio/bin/studio.sh"
 
 #functions
-
 function o() {
   if [[ -f app.js ]]; then
     vim app.js
@@ -241,41 +175,12 @@ function changeExtention()
 
 function watch()
 {
-  command -v forever >/dev/null 2>&1 || { echo >&2 "Forever is required. Aborting!"; return 1; }
+  command -v nodemon >/dev/null 2>&1 || { echo >&2 "Nodemon is required. Aborting!"; return 1; }
 
-  CUSTOM_DIR=`pwd`
-  RUN_FILE="app.js"
-
-  #read options
-  TEMP=`getopt -o fd: --long directory:,file: -n 'syncsetup' -- "$@"`
-  eval set -- "$TEMP"
-  
-  #extract options and arguments into variables
-  while true; do
-      case "$1" in
-          -d|--directory)
-            case "$2" in
-              "") shift 2 ;;
-              *) CUSTOM_DIR=$2 ; shift 2 ;;
-            esac ;;
-          -f|--file)
-            case "$2" in
-              "") shift 2 ;;
-              *) RUN_FILE=$2 ; shift 2 ;;
-            esac ;;
-          --) shift ; break ;;
-          *) echo "Internal error!" ; return 1 ;;
-      esac
-  done
-
-  if [[ "$CUSTOM_DIR" = `pwd` ]]; then
-    FILE="$RUN_FILE"
-  else
-    FILE="$CUSTOM_DIR/$RUN_FILE"
-  fi
+  FILE="app.js"
 
   if [[ -f "$FILE" ]]; then
-    (cd $CUSTOM_DIR && forever -w "$RUN_FILE")
+    nodemon $FILE
   else
     echo "No app.js found in " `pwd`
   fi
@@ -329,28 +234,3 @@ function webpack_watch()
     (cd $CUSTOM_DIR && webpack --progress --colors --watch --config "$CONFIG_FILE")
   fi
 }
-
-function watch_front(){
-  watch &
-  webpack_watch &
-  #Be carefull this program kills every instance of node
-  trap "pkill node" EXIT SIGINT
-}
-
-alias rcv2="run_consoleV2"
-function run_consoleV2() {
-  watch -d "$REV/consoleV2" &
-  webpack_watch -d "$REV/consoleV2" &
-  (export porta=3334 && watch -d "$REV/userAPI")
-  trap "pkill node" EXIT SIGINT
-}
-
-#function deploy_front ()
-#{
-  #DEFAULT_REPO="console-env"
-
-  #Build front
-  #npm run prod
-  #export NODE_ENV=production
-  #webpack -p
-#}

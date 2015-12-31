@@ -193,6 +193,83 @@ snippet jsx "define jsx dom" b
 endsnippet
 
 #
+#REACT ES6
+#
+snippet component "Create container template"
+import React, { Component } from 'react';
+
+export default class ${1:Container} extends Component {
+  render() {
+    return (
+			$0
+    );
+  }
+}
+endsnippet
+
+snippet rexport "Re-export a component"
+export { default as $1 } from './$1/$1';
+endsnippet
+
+snippet reducer "Create a new reducer"
+const $1 = '$2/$1';
+
+export default function reducer(state = ${3:\{\}}, action = {}) {
+	switch (action.type) {
+		case $1:
+			return $4;
+		default: return state;
+	}
+}
+
+export function $5() {
+	return {
+		type: $1
+};
+}
+endsnippet
+
+snippet mapState "Map state to props to use with react-redux"
+const mapStateToProps = (state) => {
+	return {
+		$1
+	};
+}
+endsnippet
+
+snippet mapDispatch "Map dispatcher to use with react-redux"
+const mapDispatchToProps = (dispatch) => {
+	return {
+		$1
+	};
+}
+endsnippet
+
+snippet container "Pure redux container"
+import { connect } from 'react-redux';
+
+import { $1 } from '../../components'
+import { * as $2 } from '../../redux/modules/$2'
+
+const mapStateToProps = (state) => {
+	return {
+		$3
+	};
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		$4
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)($1);
+endsnippet
+
+#
 #ES6
 #
 

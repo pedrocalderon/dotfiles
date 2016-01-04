@@ -1,27 +1,23 @@
 ###### REVMOB CONFIGURATION ########
 
-if [ -d $HOME/development/beeconnect ]; then
-  REV="$HOME/development/beeconnect"
-else
-  REV="$HOME/development/revmob"
-fi
+DEV="$HOME/development"
 
 # alias
-alias custom="vim ~/.bash_custom"
-alias rev="cd  $REV && ls"
-alias dev="cd $REV && cd .."
-alias tuts="cd $REV && cd .. && cd tutoriais"
-alias console="cd $REV/beeconnect-console"
-alias api="cd $REV/ishopApi"
-alias router="cd $REV/beaconRouter"
-alias site="cd $REV/beeConnectSite"
-alias bjobs="cd $REV/beaconJobs"
+alias dev="cd $DEV && ls"
+alias rev="cd  $DEV/revmob && ls"
+alias beluga="cd $DEV/beluga && ls"
+alias bc="cd $DEV/beeconnect && ls"
 
-alias consoleo="cd $REV/beeconnect-console && vim app.js"
-alias apio="cd $REV/ishopApi && vim app.js"
-alias routero="cd $REV/beaconRouter && vim app.js"
-alias siteo="cd $REV/beeConnectSite && vim app.js"
-alias bjobso="cd $REV/beaconJobs && vim app.js"
+alias consolebc="bc && cd beeconnect-console"
+alias api="bc && cd ishopApi"
+alias router="bc && cd beaconRouter"
+alias bjobs="bc && cd beaconJobs"
+alias tuts="cd $DEV/tutoriais"
+
+alias consoleo="consolebc && vim app.js"
+alias apio="api && vim app.js"
+alias routero="router && vim app.js"
+alias bjobso="bjobs && vim app.js"
 
 alias apir="api && port && sup dev"
 

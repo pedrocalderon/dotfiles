@@ -8,6 +8,7 @@ alias rev="cd  $DEV/revmob && ls"
 alias beluga="cd $DEV/beluga && ls"
 alias bc="cd $DEV/beeconnect && ls"
 
+alias console="beluga && cd console"
 alias consolebc="bc && cd beeconnect-console"
 alias api="bc && cd ishopApi"
 alias router="bc && cd beaconRouter"

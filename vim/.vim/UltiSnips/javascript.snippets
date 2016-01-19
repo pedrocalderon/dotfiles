@@ -16,7 +16,7 @@ $0
 endsnippet
 
 snippet fun
-function${1: ${2:defaultName}}($3){
+function${1: ${2:defaultName}}($3) {
 	$4
 }
 endsnippet
@@ -192,18 +192,25 @@ snippet jsx "define jsx dom" b
  */
 endsnippet
 
+snippet cn "className"
+className=${1:\{$2\}}
+endsnippet
+
 #
 #REACT ES6
 #
-snippet component "Create container template"
-import React, { Component } from 'react'
+snippet component "Create component template"
+import React, { Component, PropTypes } from 'react'
 
-export default class ${1:Container} extends Component {
+export default class ${1:Component} extends Component {
   render() {
     return (
 			$0
     )
   }
+}
+
+$1.propTypes = {
 }
 endsnippet
 
@@ -247,6 +254,7 @@ endsnippet
 
 snippet container "Pure redux container"
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { $1 } from '../../components'
 import { * as $2 } from '../../redux/modules/$2'
@@ -283,5 +291,17 @@ $0
 endsnippet
 
 snippet style "set style props in react"
-style={{$1}}${2:>}
+style={{$1}}
+endsnippet
+
+snippet importr "Import reducer from modules dir"
+import { default as $1 } from './modules/$1'
+endsnippet
+
+snippet import "Normal import"
+import $1 from '$2'
+endsnippet
+
+snippet iaction "Import action functions"
+import * as $1 from '../../redux/modules/$1'
 endsnippet

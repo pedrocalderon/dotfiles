@@ -334,24 +334,15 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "ctrlP
+    set wildignore+=*/.git/*,*/node_modules/*,*/.idea/*
     if exists(":CtrlP")
       let g:ctrlp_map = '<c-p>'
       let g:ctrlp_cmd = 'CtrlP'
 
       let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-      let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-      if executable('ag')
-        let g:ctrlp_user_command = 'ag %s -l 
-              \ --nocolor 
-              \ --nogroup
-              \ --hidden
-              \ --ignore .git
-              \ --ignore .svn
-              \ --ignore .hg
-              \ --ignore .swp
-              \ -g ""'
+      if exists("g:ctrlp_user_command")
+        unlet g:ctrlp_user_command
       endif
     endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -669,6 +660,11 @@ endif
     endfunction
     " }}}
     
+" }}}
+
+
+" Macros ---------------------- {{{
+let @z = '0wcwconstjkea =€kb €kb= jkl%a => jkd$J$%dd<i{'
 " }}}
 
 "command Bv -nargs=+ :vertical sb "<args>"

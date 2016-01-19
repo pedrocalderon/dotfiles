@@ -13,3 +13,5 @@
 --ignore-file=ext:log
 
 # Ignore dirs
+--ignore-dir=node_modules
+--ignore-dir=static

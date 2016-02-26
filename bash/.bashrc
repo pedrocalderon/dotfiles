@@ -124,7 +124,9 @@ function build () {
   if [ -f ./build.zip ]; then
     rm ./build.zip
   fi
-  zipbuild
+  #zipbuild
+
+  zip -r build.zip api/ bin/ .elasticbeanstalk/ node_modules/ server.babel.js  src/ webpack .babelrc functions/ package.json README.md site/ static/ webpack-assets.json
 }
 
 function dumpMediation ()

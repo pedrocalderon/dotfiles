@@ -35,21 +35,16 @@
     Plugin 'edsono/vim-matchit'
     Plugin 'godlygeek/tabular'
     Plugin 'airblade/vim-rooter'
-    "Plugin 'mbbill/undotree'
     Plugin 'SirVer/ultisnips'
-    "Plugin 'honza/vim-snippets'
+    Plugin 'wikitopian/hardmode'
     "JS
       "Node
       Plugin 'moll/vim-node'
-      "Plugin 'jamescarr/snipmate-nodejs'
     "Webdev
-    "Plugin 'vim-scripts/closetag.vim'
     Plugin 'mattn/emmet-vim'
-    "Plugin 'marijnh/tern_for_vim'
     "React
     Plugin 'mxw/vim-jsx'
     "Need outside instalation
-    "Plugin 'marijnh/tern_for_vim'
 
     " All pluffins must be added before the following line
     call vundle#end()

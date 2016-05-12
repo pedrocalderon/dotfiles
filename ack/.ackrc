@@ -15,3 +15,4 @@
 # Ignore dirs
 --ignore-dir=node_modules
 --ignore-dir=static
+--ignore-dir=site

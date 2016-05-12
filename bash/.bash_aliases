@@ -9,30 +9,40 @@ alias beluga="cd $DEV/beluga && ls"
 alias bc="cd $DEV/beeconnect && ls"
 
 alias console="beluga && cd console"
-alias consolebc="bc && cd beeconnect-console"
-alias api="bc && cd ishopApi"
-alias router="bc && cd beaconRouter"
-alias bjobs="bc && cd beaconJobs"
+alias manager="beluga && cd manager"
+alias rest="beluga && cd rest"
 alias tuts="cd $DEV/tutoriais"
 
-alias consoleo="consolebc && vim app.js"
-alias apio="api && vim app.js"
-alias routero="router && vim app.js"
-alias bjobso="bjobs && vim app.js"
+alias consoleo="console && vim package.json"
+alias managero="manager && vim app.js"
+alias resto="rest && vim app.js"
 
-alias apir="api && port && sup dev"
-
-alias zipbuild="zip -r build.zip app.js appSite/ build/ newrelic.js \
-  corpSite/ node_modules/ package.json rev_modules/ server/ src/"
+alias bashprofile="source ~/.bash_profile"
 
 # npm
-alias devs="npm run devs"
-alias devf="npm run devf"
+alias dev="npm run dev"
 alias npmi="npm install --save"
 alias npmd="npm install --save-dev"
 
 alias simpleserver="python -m SimpleHTTPServer 3000"
 
+#Beluga
+alias localmanager="export LOCAL_MANAGER=true && echo 'manager is local'"
+alias localreader="export LOCAL_READER=true && echo 'reader is local'"
+alias autosignin="export NO_SIGNIN=true && echo 'autosignin on'"
+alias save="export NO_SAVE='' && echo 'saving state'"
+alias emptyapp="export EMPTY_APP=true && echo 'loading empty app'"
+alias statefile="export STATE_FILE=true && echo 'save sate to file'"
+alias loadstate="export LOAD_STATE=true && echo 'load state from file'"
+alias nolocalmanager="export LOCAL_MANAGER='' && echo 'no local manager'"
+alias nolocalreader="export LOCAL_READER='' && echo 'no local reader'"
+alias noautosignin="export NO_SIGNIN='' && echo 'autosignin off'"
+alias nosave="export NO_SAVE=true && echo 'not saving state'"
+alias noemptyapp="export EMPTY_APP='' && echo 'emptyapp off'"
+alias nostatefile="export STATE_FILE='' && echo 'no state to file'"
+alias noloadstate="export LOAD_STATE='' && echo 'not loading state from file'"
+
+alias restprodmanager="export B_MANAGER_PROD=true"
 
 
 ############# PERSONAL CONFIGURATION ###############

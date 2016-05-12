@@ -37,9 +37,12 @@
     Plugin 'airblade/vim-rooter'
     Plugin 'SirVer/ultisnips'
     Plugin 'wikitopian/hardmode'
+    Plugin 'Valloric/YouCompleteMe'
     "JS
       "Node
       Plugin 'moll/vim-node'
+      Plugin 'ternjs/tern_for_vim'
+      Plugin 'pangloss/vim-javascript'
     "Webdev
     Plugin 'mattn/emmet-vim'
     "React
@@ -71,7 +74,7 @@
     set noautochdir
 
     set number
-    "set relativenumber
+    set relativenumber
 
     set encoding=utf-8
 
@@ -289,8 +292,9 @@ endif
     "let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
-    let g:syntastic_javascript_checkers = ["eslint"]
-    nnoremap <leader>ce :SyntasticToggleMode<CR>
+    let g:syntastic_javascript_checkers=["eslint"]
+    nnoremap <leader>st :SyntasticToggleMode<CR>
+    nnoremap <leader>ss :SyntasticCheck<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -357,9 +361,9 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "UltiSnips
     "Do not use tab if youcompleteme is installed
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
     let g:UltiSnipsEditSplit="vertical"
     nnoremap <leader>es :UltiSnipsEdit<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,6 +380,17 @@ endif
     autocmd FileType html,css,javascript EmmetInstall
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Tern
+    let g:tern_map_keys=1
+    let g:tern_map_prefix='<leader>'
+    let g:tern_show_argument_hints='on_hold'
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "vim-javascript
+    let g:javascript_enable_domhtmlcss=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 
 " Remaps ---------------------- {{{
@@ -656,7 +671,6 @@ endif
     " }}}
     
 " }}}
-
 
 " Macros ---------------------- {{{
 let @z = '0wcwconstjkea =€kb €kb= jkl%a => jkd$J$%dd<i{'

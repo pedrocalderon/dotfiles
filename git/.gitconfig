@@ -26,5 +26,6 @@
 	last = log -p -2
 [core]
 	excludesfile = /home/pedro/.gitignore_global
+	editor = /usr/local/bin/vim
 [credential]
 	helper = cache --timeout=72000

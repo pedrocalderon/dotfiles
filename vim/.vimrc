@@ -35,7 +35,7 @@
     Plugin 'edsono/vim-matchit'
     Plugin 'godlygeek/tabular'
     Plugin 'airblade/vim-rooter'
-    "Plugin 'SirVer/ultisnips'
+    Plugin 'SirVer/ultisnips'
     Plugin 'wikitopian/hardmode'
     "Plugin 'Valloric/YouCompleteMe'
     "JS
@@ -361,11 +361,11 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "UltiSnips
     "Do not use tab if youcompleteme is installed
-    "let g:UltiSnipsExpandTrigger="<c-j>"
-    "let g:UltiSnipsJumpForwardTrigger="<c-j>"
-    "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-    "let g:UltiSnipsEditSplit="vertical"
-    "nnoremap <leader>es :UltiSnipsEdit<CR>
+    let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    let g:UltiSnipsEditSplit="vertical"
+    nnoremap <leader>es :UltiSnipsEdit<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,0 +1,4 @@
+source ~/bash_scripts/path
+source ~/bash_scripts/prompt
+source ~/bash_scripts/basic
+source ~/bash_scripts/docker

@@ -1,0 +1,16 @@
+function dockerstart()
+{
+  docker-machine start
+  docker-machine env
+  eval $(docker-machine env default)
+}
+
+function iex()
+{
+  dockerstart && docker run -it --rm elixir
+}
+
+function elixir()
+{
+  docker run -it --rm --name elixir-inst1 -v "$PWD":/usr/src/myapp -w /usr/src/myapp elixir elixir $1
+}

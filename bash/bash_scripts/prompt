@@ -1,0 +1,9 @@
+# prompt configuration
+# refs:
+# http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/
+# https://github.com/jimeh/git-aware-prompt
+# git aware prompt must've been cloned
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\W \[$(tput setaf 6)\]\$git_branch \$git_dirty \[$(tput setaf 1)\]\$ \[$(tput sgr0)\]"
+export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "

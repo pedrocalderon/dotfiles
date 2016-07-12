@@ -1,0 +1,23 @@
+function cdl ()
+{
+  cd $1 && ls
+}
+
+function cdnew ()
+{
+    if [ -d $1 ]; then
+        echo "directory $1 already exists, entering it"
+        cd $1
+    else
+        mkdir $1 && cd $1
+        echo "dir $1 created"
+    fi
+}
+
+function changeExtention()
+{
+  for f in *.$1; do
+    mv -- "$f" "${f%.$1}".$2
+  done
+}
+

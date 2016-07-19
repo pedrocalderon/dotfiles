@@ -1,16 +1,30 @@
 function dockerstart()
 {
-  docker-machine start
-  docker-machine env
-  eval $(docker-machine env default)
+  if docker-machine ls -q | grep default > /dev/null; then
+    echo "Docker default already running"
+  else
+    docker-machine start > /dev/null
+    docker-machine env > /dev/null
+    eval $(docker-machine env default) > /dev/null
+    echo "Docker started"
+  fi
 }
 
 function iex()
 {
-  dockerstart && docker run -it --rm elixir
+  dockerstart && \
+  docker run -it --rm \
+  -v "$PWD":/usr/src/myapp \
+  -w /usr/src/myapp \
+  elixir
 }
 
-function elixir()
+function elixirc()
 {
-  docker run -it --rm --name elixir-inst1 -v "$PWD":/usr/src/myapp -w /usr/src/myapp elixir elixir $1
+  dockerstart && \
+  docker run -it --rm \
+  --name elixir-inst1 \
+  -v "$PWD":/usr/src/myapp \
+  -w /usr/src/myapp \
+  elixir elixirc $1
 }

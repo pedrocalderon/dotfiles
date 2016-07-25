@@ -1,30 +1,28 @@
+function exposeports()
+{
+  VBoxManage modifyvm "default" --natpf4 "tcp-port3000,tcp,,3000,,3000";
+  VBoxManage modifyvm "default" --natpf4 "tcp-port27017,tcp,,27017,,27017";
+}
+
 function dockerstart()
 {
-  if docker-machine ls -q | grep default > /dev/null; then
-    echo "Docker default already running"
-  else
-    docker-machine start > /dev/null
-    docker-machine env > /dev/null
-    eval $(docker-machine env default) > /dev/null
-    echo "Docker started"
-  fi
+  docker-machine start > /dev/null
+  docker-machine env > /dev/null
+  eval $(docker-machine env default) > /dev/null
+  echo "Docker started"
 }
 
-function iex()
-{
-  dockerstart && \
-  docker run -it --rm \
-  -v "$PWD":/usr/src/myapp \
-  -w /usr/src/myapp \
-  elixir
-}
-
-function elixirc()
+function elixir-docker()
 {
   dockerstart && \
   docker run -it --rm \
   --name elixir-inst1 \
   -v "$PWD":/usr/src/myapp \
   -w /usr/src/myapp \
-  elixir elixirc $1
+  elixir $@
 }
+
+alias iex="elixir-docker"
+alias elixir="elixir-docker elixir"
+alias elixirc="elixir-docker elixirc"
+

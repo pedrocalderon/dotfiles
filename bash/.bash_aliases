@@ -56,4 +56,5 @@ alias install="sudo apt-get install -y"
 alias update="sudo apt-get update"
 alias rmVimSwap="find ./ -type f -name \"\\.*sw[klmnop]\" -exec rm -rvf {} \;"
 alias as="XMODIFIERS= ~/.programs/android-studio/bin/studio.sh"
+alias phoenixlog="tail -f /var/log/system.log | grep Phoenix"
 

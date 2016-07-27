@@ -1,5 +1,4 @@
-// Script copied from garrow/phoenix-configurations
-
+// Credits (or better copied from): garrow/phoenix-configuration
 /**
  * PhizeUp.js - A reimplementation of basic SizeUp functionality using the Phoenix window manager.
  *
@@ -38,8 +37,8 @@ var config = {
 };
 
 var setupHandlers = function(){
-    var modKeys1 =   ['ctrl', 'alt', 'cmd']
-        //modKeys2 = ['ctrl', 'alt', 'shift'];
+    var modKeys1 =   ['ctrl', 'alt', 'cmd'],
+        modKeys2 = ['ctrl', 'alt', 'shift'];
 
 
     return {
@@ -133,18 +132,19 @@ var getSubFrame = function(parentFrame, direction) {
     var parentHalfWide = parentWidth / 2;
     var parentHalfHigh = parentHeight / 2;
 
+
     var subFrames = {
         left:        { x: parentX,        y: parentY,        width: parentHalfWide, height: parentHeight   },
-        right:       { x: parentHalfWide, y: parentY,        width: parentHalfWide, height: parentHeight   },
+        right:       { x: parentX + (parentWidth / 2), y: parentY,        width: parentHalfWide, height: parentHeight   },
         up:          { x: parentX,        y: parentY,        width: parentWidth,    height: parentHalfHigh },
-        down:        { x: parentX,        y: parentHalfHigh, width: parentWidth,    height: parentHalfHigh },
+        down:        { x: parentX,        y: parentY + parentHalfHigh, width: parentWidth,    height: parentHalfHigh },
 
         topLeft:     { x: parentX,        y: parentY,        width: parentHalfWide, height: parentHalfHigh },
-        bottomLeft:  { x: parentX,        y: parentHalfHigh, width: parentHalfWide, height: parentHalfHigh },
-        topRight:    { x: parentHalfWide, y: parentY,        width: parentHalfWide, height: parentHalfHigh },
-        bottomRight: { x: parentHalfWide, y: parentHalfHigh, width: parentHalfWide, height: parentHalfHigh },
+        bottomLeft:  { x: parentX,        y: parentY + parentHalfHigh, width: parentHalfWide, height: parentHalfHigh },
+        topRight:    { x: parentX + parentHalfWide, y: parentY,        width: parentHalfWide, height: parentHalfHigh },
+        bottomRight: { x: parentX + parentHalfWide, y: parentY + parentHalfHigh, width: parentHalfWide, height: parentHalfHigh },
 
-        center:      { x: parentHalfWide/2, y: parentHalfHigh/2, width: parentHalfWide, height: parentHalfHigh  }
+        center:      { x: parentX + parentHalfWide/2, y: parentY + parentHalfHigh/2, width: parentHalfWide, height: parentHalfHigh  }
     };
 
     return subFrames[direction];

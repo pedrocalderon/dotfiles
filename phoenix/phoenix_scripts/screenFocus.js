@@ -104,7 +104,6 @@ function screenFocusAlert(screen) {
   alertModal.duration = 0.5
   alertModal.message  = 'AQUI'
 
-  var screenFrame     = screen.frameInRectangle()
   var alertFrame      = alertModal.frame()
 
   alertModal.origin = screenCenter(screen)

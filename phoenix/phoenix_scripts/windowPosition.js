@@ -37,9 +37,7 @@ var config = {
 };
 
 var setupHandlers = function(){
-    var modKeys1 =   ['ctrl', 'alt', 'cmd'],
-        modKeys2 = ['ctrl', 'alt', 'shift'];
-
+    var modKeys1 =   ['ctrl', 'alt', 'cmd']
 
     return {
         up:          new Key('up',    modKeys1, putWindow('up')),

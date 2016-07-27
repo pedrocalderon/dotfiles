@@ -2,6 +2,11 @@ require('./phoenix_scripts/scanner.js')
 
 var windowRegistry = {}
 
+var alphakeys = 'qwertyuiopasdfghjklzxcvbnm'.split('')
+function isAphaChar(char) {
+  return alphakeys.indexOf(char) !== -1
+}
+
 function getCurrentWindow() {
   return Window.all().filter(function(w) {
     return mouseIsOverWindow(w) && w.isVisible()
@@ -13,7 +18,11 @@ var modKeys = ['ctrl', 'alt']
 var markWindowHandler = new Key('m', modKeys, function() {
   var markWindowScanner = new Scanner()
   markWindowScanner.scan(function(key) {
-    windowRegistry[key] = getCurrentWindow()
+    if (isAphaChar(key)) {
+      windowRegistry[key] = getCurrentWindow()
+    } else {
+      Phoenix.notify('Registry key must be a char')
+    }
   })
 })
 

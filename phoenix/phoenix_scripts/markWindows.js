@@ -27,3 +27,13 @@ var gotoWindowHandler = new Key('g', modKeys, function() {
     }
   })
 })
+
+var handleClosedWindows = new Event('windowDidClose', function(windowClosed) {
+  var keys = Object.keys(windowRegistry)
+  keys.forEach(function(k) {
+    if(windowRegistry[k].isEqual(windowClosed)) {
+      delete windowRegistry[k]
+      Phoenix.notify('Registry ' + k + ' has been deleted')
+    }
+  })
+})

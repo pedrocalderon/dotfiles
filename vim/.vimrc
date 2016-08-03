@@ -28,7 +28,7 @@
     "Plugin 'Townk/vim-autoclose'
     Plugin 'corntrace/bufexplorer'
     Plugin 'Lokaltog/vim-easymotion'
-    Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'majutsushi/tagbar'
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
@@ -37,6 +37,7 @@
     Plugin 'airblade/vim-rooter'
     Plugin 'SirVer/ultisnips'
     Plugin 'wikitopian/hardmode'
+    Plugin 'editorconfig/editorconfig-vim'
     "Plugin 'Valloric/YouCompleteMe'
     "JS
       "Node
@@ -284,6 +285,8 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Syntastic configs
 
+    " Use debug in case of syntastic problems
+    "let g:syntastic_debug = 3
     " jump to the first error
     let g:syntastic_auto_jump=0
     " populate vim errors list with the compilation errors. Use :lne[xt]
@@ -390,6 +393,11 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "vim-javascript
     let g:javascript_enable_domhtmlcss=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "vim-javascript
+    let g:bufExplorerShowRelativePath=1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 

@@ -16,3 +16,4 @@
 --ignore-dir=node_modules
 --ignore-dir=static
 --ignore-dir=site
+--ignore-dir=build

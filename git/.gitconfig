@@ -1,19 +1,23 @@
 [user]
-	name = pcalderon
-	email = pedro.calderon@edocsaude.com
+	name = 
+	email = 
 [grep]
 	extendRegexp = true
 	lineNumber = true
 [alias]
-	a = add -A
+	aa = add -A
 	st = status
 	cm = commit -m
+  ac = commit -a
+  ca = commit --amend --no-edit
 	br = branch
 	df = diff --color --color-words --abbrev
 	lg = log --oneline --decorate
 	co = checkout
+	cod = checkout development
 	cob = checkout -b
 	mg = merge --no-ff
+  ss = status -sb
 	;ft = fetch origin
 	;fpo = fetch -p origin
 	;fp = fetch -p
@@ -25,7 +29,21 @@
 	logs = log --oneline --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	last = log -p -2
 [core]
-	excludesfile = /home/pedro/.gitignore_global
+	excludesfile = /Users/pedro/.gitignore_global
 	editor = /usr/local/bin/vim
 [credential]
 	helper = cache --timeout=72000
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/pedro/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/pedro/.stCommitMsg
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff

@@ -49,6 +49,10 @@
     "React
     Plugin 'mxw/vim-jsx'
     "Need outside instalation
+    "ELM
+    Plugin 'ElmCast/elm-vim'
+    " Elixir
+    Plugin 'elixir-lang/vim-elixir'
 
     " All pluffins must be added before the following line
     call vundle#end()
@@ -296,6 +300,7 @@ endif
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
     let g:syntastic_javascript_checkers=["eslint"]
+    let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "ng-']
     nnoremap <leader>st :SyntasticToggleMode<CR>
     nnoremap <leader>ss :SyntasticCheck<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,7 +341,7 @@ endif
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "ctrlP
-    set wildignore+=*/.git/*,*/node_modules/*,*/.idea/*
+    set wildignore+=*/.git/*,*/node_modules/*,*/.idea/*,*/build/*
     if exists(":CtrlP")
       let g:ctrlp_map = '<c-p>'
       let g:ctrlp_cmd = 'CtrlP'
@@ -398,6 +403,12 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "vim-javascript
     let g:bufExplorerShowRelativePath=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "elm-vim
+    let g:elm_format_autosave = 1
+    let g:elm_syntastic_show_warnings = 1
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 

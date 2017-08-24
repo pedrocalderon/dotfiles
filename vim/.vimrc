@@ -13,41 +13,27 @@
     " let Vundle manage Vundle, required
     Plugin 'gmarik/Vundle.vim'
 
+    Plugin 'airblade/vim-rooter'
+    "Plugin 'godlygeek/tabular'
+    "Plugin 'corntrace/bufexplorer'
+    "Plugin 'Lokaltog/vim-easymotion'
+
     " Pluggins to manage
     Plugin 'mileszs/ack.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
-    Plugin 'tpope/vim-abolish'
-    " Plugin 'tpope/vim-commentary'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    "Autoclose space map breaks abbreviations
-    "Plugin 'Townk/vim-autoclose'
-    Plugin 'corntrace/bufexplorer'
-    Plugin 'Lokaltog/vim-easymotion'
     Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'majutsushi/tagbar'
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
-    Plugin 'edsono/vim-matchit'
-    Plugin 'godlygeek/tabular'
-    Plugin 'airblade/vim-rooter'
     Plugin 'SirVer/ultisnips'
-    Plugin 'wikitopian/hardmode'
     Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'pangloss/vim-javascript'
     "Plugin 'Valloric/YouCompleteMe'
-    "JS
-      "Node
-      Plugin 'moll/vim-node'
-      Plugin 'ternjs/tern_for_vim'
-      Plugin 'pangloss/vim-javascript'
-    "Webdev
-    Plugin 'mattn/emmet-vim'
-    "React
-    Plugin 'mxw/vim-jsx'
+
     "Need outside instalation
     "ELM
     Plugin 'ElmCast/elm-vim'
@@ -56,7 +42,10 @@
 
     " All pluffins must be added before the following line
     call vundle#end()
-    
+
+    " Included packages
+    packadd! matchit
+
 " ------------------------------ }}}
 
 " Basic settings --------------- {{{
@@ -118,8 +107,6 @@
     " Ignore case, unless there is a uppercase character.
     set ignorecase
     set smartcase
-    " uses g option by default
-    set gdefault
 
     " Identation
     set expandtab "spaces substitute tab characters
@@ -127,7 +114,7 @@
     set softtabstop=2 "Fine tune amount of white spaces to be inserted
     set shiftwidth=2 "Definitions for the identetion commands
     set autoindent
-    set shiftround 
+    set shiftround
 
     " Backspace behavior
     set backspace=indent,eol,start
@@ -144,29 +131,10 @@
     else
         highlight ColorColumn ctermbg=8
     endif
-    " Highlight the column after the textwidth
-    "set colorcolumn=+1
-
-    " Backup
-    " todo: verify if the backup dir exists, if not create it.
-    set backup
-    set backupext=.bak
-    if (has('win16') || has('win32') || has('win64') || has('win95'))
-        set backupdir=C:\Users\Pedro\backup
-    elseif has('unix') || has('mac') || has('macunix')
-        set backupdir=~/.vimBackup
-    endif
 
     " File completiton wildcards
     set wildignore=*/tmp/*,*.so,*.swp
     set wildignore=*.zip,*.tar.gz,*.tar.xz
-    "MatLab files
-    set wildignore=*.asv,*.fig,*.mat
-    "Windows
-    set wildignore=*\\tmp\\*,*.exe
-
-    " Highlight groups
-    highlight MyGreenGroup ctermbg=green guibg=green
 
     " Grep program
     set grepprg=grep
@@ -174,9 +142,6 @@
     " Optimiza for fast terminal connection
     " timreynolds.org/2013/05/26/configuring-vim-on-mac-os-x/
     set ttyfast
-
-    " Always show status line
-    "set laststatus=2
 
     " No error bells
     set noerrorbells
@@ -196,48 +161,18 @@
     " term color
     set t_Co=256
 
+    " disable swaps and backups
+    set nobackup
+    set noswapfile
 " }}}
 
 " Autocomands ---------------------- {{{
 if has("autocmd")
 
-    " Initializations             ---------------------- {{{
-    " The autocmd! erases the previosly loaded augroup
-    " Commands run at initialization of vim
-    augroup initializations
-        autocmd!
-        " todo: ver pq nerdtree perde a cor ao se recarregar o vimrc
-        " Re-load the .vimrc file after all startup stuff.
-        "autocmd VimEnter,GUIEnter * :source $MYVIMRC
-        " Create file as soon as it's eddited
-        "/*autocmd BufNewFile * :write*/
-        " Automatically change to normal
-        " todo: fazer sair do modo insert
-        "autocmd FocusLost,CursorHoldI * :echom "Perda de foco"
-    augroup END
-    " }}}
-
-    " C/C++ arduino file settings ---------------------- {{{
-    augroup filetype_c
-        autocmd!
-        autocmd FileType setlocal c,cpp :set  cindent
-        " Special highlights configurations
-        autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
-    augroup END
-    " }}}
-
     " Vimscript file settings ---------------------- {{{
     augroup filetype_vim
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker
-    augroup END
-    " }}}
-   
-    " Latex file settings  ---------------------- {{{
-    augroup filetype_latex
-        autocmd!
-        autocmd FileType latex setlocal grepprg=grep\ -nH\ $*
-        autocmd FileType tex setlocal foldmethod=marker
     augroup END
     " }}}
 
@@ -306,19 +241,6 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " easymotion 
-    
-    " Bi-directional find motion
-    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
-    " `s{char}{label}`
-    nmap s <Plug>(easymotion-s)
-    " or
-    " `s{char}{char}{label}`
-    " Need one more keystroke, but on average, it may be more comfortable.
-    nmap <leader><leader>s <Plug>(easymotion-s2)
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Tagbar
     nnoremap <silent> <F9> :TagbarToggle<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,16 +249,6 @@ endif
     "gundo
     nnoremap <F5> :GundoToggle<CR>
     let g:gundo_preview_bottom = 1
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "tabular
-    if exists(":Tabularize")
-      nmap <Leader>t= :Tabularize /=<CR>
-      vmap <Leader>t= :Tabularize /=<CR>
-      nmap <Leader>t: :Tabularize /:<CR>
-      nmap <Leader>t: :Tabularize /:<CR>
-    endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -377,35 +289,6 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "vim-jsx
-    "let g:jsx_ext_required = 0 "allow jsx in normal js files
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Emmet
-    let g:user_emmet_install_global = 0
-    let g:user_emmet_leader_key='<leader>'
-    autocmd FileType html,css,javascript EmmetInstall
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "Tern
-    let g:tern_map_keys=1
-    let g:tern_map_prefix='<leader>'
-    let g:tern_show_argument_hints='on_hold'
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "vim-javascript
-    let g:javascript_enable_domhtmlcss=1
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "vim-javascript
-    let g:bufExplorerShowRelativePath=1
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "elm-vim
     let g:elm_format_autosave = 1
     let g:elm_syntastic_show_warnings = 1
@@ -430,7 +313,6 @@ endif
 
     " Quick esc in insert mode
     inoremap jk <esc>
-    inoremap <esc> <nop>
 
     " Navigate between windows
     noremap <leader>h <C-w>h
@@ -450,9 +332,6 @@ endif
     " K is the oposite o J, break te line
     nnoremap K i<cr><esc>$
 
-    " Insert lines without entering insert mode
-    "nnoremap <Enter> o<esc>
-
     " very-magic search
     nnoremap // /\v
 
@@ -470,23 +349,13 @@ endif
     " Spell checks
     nnoremap <leader>sce :setlocal spell! spelllang=en<cr>
     nnoremap <leader>scp :setlocal spell! spelllang=pt<cr>
-    nnoremap <leader>scf :setlocal spell! spelllang=fr<cr>
     nnoremap <leader>c 1z=
 
-    " Substitutions
-    "noremap ;; :%s:::g<Left><Left><Left>
-    "noremap ;' :%s:::cg<Left><Left><Left><Left>
-
-    " Highlights trailing spaces
-    " The group highlight group Error can be used.
-    nnoremap <leader>w :match MyGreenGroup /\v +$/<cr>
-    nnoremap <leader>W :match<cr>
-
-    " Insert current file name 
-    inoremap \fn <C-R>=expand("%:t:r")<CR>
-    inoremap \file <C-R>=expand("%:t")<CR>
-    inoremap \fdir <C-R>=expand("%:p:h")<CR>
-    inoremap \rdir <C-R>=expand("%:h")<CR>
+    " Insert current file name
+    "inoremap \fn <C-R>=expand("%:t:r")<CR>
+    "inoremap \file <C-R>=expand("%:t")<CR>
+    "inoremap \fdir <C-R>=expand("%:p:h")<CR>
+    "inoremap \rdir <C-R>=expand("%:h")<CR>
 
     " Tabs
     " Remapas from: http://vim.wikia.com/wiki/Using_tab_pages
@@ -500,25 +369,12 @@ endif
     let notabs = 0
     nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
 
-    " Copy to clip board on Mac
-    nmap <F2> :.w !pbcopy<CR><CR>
-    vmap <F2> :w !pbcopy<CR><CR>
-    nmap <F3> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-    imap <F3> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-
-    " Copy/Pate maps
-    nnoremap <C-y> o<esc>"*p
-    nnoremap <C-c> "*yy
-
     " Format json
     " Make this a function executable through a ex command
     nnoremap <F12> :%!python -m json.tool<CR>
-
-
-
 " }}}
 
-" operator-pending mappings ---------------------- {{{ 
+" operator-pending mappings ---------------------- {{{
 
     "in next something
     "in last something
@@ -532,7 +388,7 @@ endif
     onoremap il" :<c-u>normal! F"vi"<cr>
     onoremap in' :<c-u>normal! f'vi'<cr>
     onoremap il' :<c-u>normal! F'vi'<cr>
-    "Accept makes either opening or closing element valid 
+    "Accept makes either opening or closing element valid
     onoremap in) :<c-u>normal! f(vi(<cr>
     onoremap il) :<c-u>normal! F)vi(<cr>
     onoremap in} :<c-u>normal! f{vi{<cr>
@@ -552,28 +408,13 @@ endif
     onoremap al" :<c-u>normal! F"va"<cr>
     onoremap an' :<c-u>normal! f'va'<cr>
     onoremap al' :<c-u>normal! F'va'<cr>
-    "Accept makes either opening or closing element valid 
+    "Accept makes either opening or closing element valid
     onoremap an) :<c-u>normal! f(va(<cr>
     onoremap al) :<c-u>normal! F)va(<cr>
     onoremap an} :<c-u>normal! f{va{<cr>
     onoremap al} :<c-u>normal! F}va{<cr>
     onoremap an] :<c-u>normal! f[va[<cr>
     onoremap al] :<c-u>normal! F]va[<cr>
-
-" }}}
-
-" Abbreviations ---------------------- {{{
-
-    iabbrev fun function
-
-    iabbrev pc Pedro Calderon
-    iabbrev @@ pedrolcalderon@gmail.com
-
-    " todo: fazer <l mapear o literal <leader>
-    " iabbrev <l <leader> 
-
-    " Typos correction
-    iabbrev Caldeorn Calderon
 
 " }}}
 
@@ -589,7 +430,7 @@ endif
     vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
     function! s:GrepOperator(type)
-        let saved_unamed_register = @@ 
+        let saved_unamed_register = @@
 
         if a:type ==# 'v'
             execute "normal! `<v`>y"
@@ -635,7 +476,7 @@ endif
         endif
     endfunction
     " }}}
-    
+
     " Search for selected text. ---------------------- {{{
     " http://vim.wikia.com/wiki/VimTip171
     let s:save_cpo = &cpo | set cpo&vim
@@ -688,11 +529,11 @@ endif
       exe ":Git pull --no-edit origin" . branch
     endfunction
     " }}}
-    
+
 " }}}
 
 " Macros ---------------------- {{{
-let @z = '0wcwconstjkea =€kb €kb= jkl%a => jkd$J$%dd<i{'
+let @z = '0wcwconstjkea =ï¿½kb ï¿½kb= jkl%a => jkd$J$%dd<i{'
 " }}}
 
 "command Bv -nargs=+ :vertical sb "<args>"

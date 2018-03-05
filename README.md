@@ -1,4 +1,12 @@
-#VIM
+# Usage
+
+Use GNU stow.
+
+[Tutorial](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/)
+
+# TODO:
+
+### VIM
 * Finish adding development environment plugins.
 
 * Set spell check in english and portuguese (french spanish optional)

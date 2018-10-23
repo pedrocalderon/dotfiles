@@ -1,5 +1,0 @@
-export ANDROID_HOME=~/Library/Android/sdk
-PATH="~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools:${PATH}"
-PATH="~/.programs/gradle-2.14/bin:${PATH}"
-export PATH
-

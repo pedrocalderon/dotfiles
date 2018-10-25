@@ -23,16 +23,18 @@
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-unimpaired'
+    Plugin 'tpope/vim-repeat'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
     Plugin 'SirVer/ultisnips'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'pangloss/vim-javascript'
-    "Plugin 'Valloric/YouCompleteMe'
+    Plugin 'w0rp/ale'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'airblade/vim-gitgutter'
 
     "Need outside instalation
     "ELM
@@ -205,6 +207,11 @@ endif
 " Plugins Configuration ---------------------- {{{
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "ALE
+    let g:ale_completion_enable = 1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " nerdtree
     noremap <leader>n :NERDTreeToggle<CR>
 
@@ -219,25 +226,6 @@ endif
             let NERDTreeQuitOnOpen=1
         augroup END
     endif
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Syntastic configs
-
-    " Use debug in case of syntastic problems
-    "let g:syntastic_debug = 3
-    " jump to the first error
-    let g:syntastic_auto_jump=0
-    " populate vim errors list with the compilation errors. Use :lne[xt]
-    " :lp[revious] to navigate the errors.
-    let g:syntastic_always_populate_loc_list=1
-    "let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_javascript_checkers=["eslint"]
-    let g:syntastic_html_tidy_ignore_errors=['proprietary attribute "ng-']
-    nnoremap <leader>st :SyntasticToggleMode<CR>
-    nnoremap <leader>ss :SyntasticCheck<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,6 +264,11 @@ endif
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Rooter
     let g:rooter_silent_chdir=1
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "YouCompleteMe
+    let g:ycm_semantic_triggers = { 'elm' : ['.'] }
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

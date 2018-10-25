@@ -1,0 +1,20 @@
+# General Aliases
+alias ls="ls -G"
+alias la="ls -GFlash"
+
+#Navigation Aliases
+alias docs="cd ~/Documents && ls"
+alias dotfiles="cd $HOME/dotfiles"
+alias desktop="cd ~/Desktop"
+alias dev="cd ~/edoc/development"
+
+# Functions
+function project() {
+  dir=$HOME/edoc/development/$1
+  if [ -d "$dir" ]; then
+    cd $dir
+  else
+    echo "Directory $dir does not exists"
+    return 1
+  fi
+}

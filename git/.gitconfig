@@ -39,8 +39,6 @@
 [mergetool "sourcetree"]
 	cmd = /Users/pedro/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-	template = /Users/pedro/.stCommitMsg
 [diff]
 	tool = vimdiff
 [difftool]

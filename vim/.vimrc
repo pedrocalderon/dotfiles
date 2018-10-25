@@ -61,6 +61,8 @@
     " disable unsafe commands in local .vimrc files
     set secure
 
+    set updatetime=100
+
     if (has('win16') || has('win32') || has('win64') || has('win95'))
         cd C:\Users\Pedro
         set runtimepath=$VIMRUNTIME,C:\Users\Pedro\dotfiles\vim\.vim
@@ -278,6 +280,7 @@ endif
     let g:UltiSnipsJumpForwardTrigger="<c-j>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
     let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsSnippetsDir="/Users/pedro/.vim/UltiSnips"
     nnoremap <leader>es :UltiSnipsEdit<CR>
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

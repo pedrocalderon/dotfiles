@@ -26,6 +26,7 @@
     Plugin 'tpope/vim-repeat'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'vim-scripts/Gundo'
     Plugin 'bling/vim-airline'
@@ -173,6 +174,15 @@
 " Autocomands ---------------------- {{{
 if has("autocmd")
 
+    " Elm file settings ---------------------- {{{
+    augroup filetype_elm
+        autocmd!
+        autocmd FileType elm set tabstop=4
+        autocmd FileType elm set softtabstop=4
+        autocmd FileType elm set shiftwidth=4
+    augroup END
+    " }}}
+
     " Vimscript file settings ---------------------- {{{
     augroup filetype_vim
         autocmd!
@@ -207,6 +217,13 @@ endif
 " }}}
 
 " Plugins Configuration ---------------------- {{{
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "GITGUTTER
+    nmap <Leader>ha <Plug>GitGutterStageHunk
+    nmap <Leader>hr <Plug>GitGutterUndoHunk
+    nmap <Leader>hv <Plug>GitGutterPreviewHunk
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "ALE

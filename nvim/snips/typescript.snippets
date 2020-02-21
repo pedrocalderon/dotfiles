@@ -1,0 +1,43 @@
+snippet cl "console.log()"
+console.log($1)$0
+endsnippet
+
+snippet fun "Named function"
+function $1($2) {
+	$3
+}
+endsnippet
+
+snippet async "Async/Await function"
+async function $1($2) {
+	$3
+}
+endsnippet
+
+snippet try "Try/Catch block"
+try {
+	$1
+} catch (err) {
+	console.log(err)
+}
+endsnippet
+
+snippet describe "Start a Jest describe test section"
+describe('$1', () => {
+	it('should $2', () => {
+		$3
+		expect(true).toBe(true)
+	})
+})
+endsnippet
+
+snippet it "Start a Jest it test"
+it('should $2', () => {
+	$3
+	expect(true).toBe(true)
+})
+endsnippet
+
+snippet tobe "Jest toBe expectation"
+expect($1).toBe($2)
+endsnippet

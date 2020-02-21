@@ -1,0 +1,31 @@
+snippet cl "console.log()"
+console.log($1)$0
+endsnippet
+
+snippet fun "Named function"
+function $1($2) {
+	$3
+}
+endsnippet
+
+snippet async "Async/Await function"
+async function $1($2) {
+	$3
+}
+endsnippet
+
+snippet re "Require CommonJS module"
+const $1 = require('$1')
+endsnippet
+
+snippet exp "Exports variable"
+exports.$1 = $1
+endsnippet
+
+snippet try "Try/Catch"
+try {
+	$1
+} catch (err) {
+	$2
+}
+endsnippet
